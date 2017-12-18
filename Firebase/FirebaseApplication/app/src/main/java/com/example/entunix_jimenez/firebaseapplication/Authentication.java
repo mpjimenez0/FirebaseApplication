@@ -105,7 +105,7 @@ public class Authentication extends AppCompatActivity {
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             Log.w("TESTING", "signInWithEmail:failed", task.getException());
-                            Toast.makeText(Authentication.this, "failed",
+                            Toast.makeText(Authentication.this, "Sign in Failed",
                                     Toast.LENGTH_SHORT).show();
                         }else{
                             Intent i = new Intent(Authentication.this, MainMenu.class);
