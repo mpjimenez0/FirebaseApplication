@@ -27,6 +27,7 @@ public class MainMenu extends AppCompatActivity{
         bt_gestureStart = findViewById(R.id.bt_gestureStart);
         bt_profileView = findViewById(R.id.bt_profileView);
         bt_signOut = findViewById(R.id.bt_signOut);
+        tv_greeting = findViewById(R.id.tv_greeting);
         mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser user = mAuth.getCurrentUser();
