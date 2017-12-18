@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
     <TextView
         android:id="@+id/tv_gestDetails"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:text="TextView"
         android:textAlignment="viewStart"
         android:textSize="18sp" />
