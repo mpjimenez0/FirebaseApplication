@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Created by mpjim on 12/18/2017.
@@ -14,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainMenu extends AppCompatActivity{
     Button bt_gestureStart, bt_profileView, bt_signOut;
+    TextView tv_greeting;
     private FirebaseAuth mAuth;
 
     @Override
@@ -25,6 +28,11 @@ public class MainMenu extends AppCompatActivity{
         bt_profileView = findViewById(R.id.bt_profileView);
         bt_signOut = findViewById(R.id.bt_signOut);
         mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user != null) {
+            tv_greeting.setText("Welcome, " + user.getDisplayName());
+        }
 
         bt_gestureStart.setOnClickListener(new View.OnClickListener(){
             @Override
