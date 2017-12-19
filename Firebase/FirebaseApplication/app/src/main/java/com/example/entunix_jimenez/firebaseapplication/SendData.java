@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static java.lang.Math.pow;
 
@@ -50,6 +52,7 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
 
     // FIREBASE VARIABLES
     private FirebaseAuth mAuth;
+    DatabaseReference gestureAttempt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +78,9 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
         // FIREBASE VARIABLES
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-
+        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/" + user.getUid() + "/details";
+        gestureAttempt = FirebaseDatabase.getInstance().getReferenceFromUrl(gestureAttemptUrl);
+        //
         bt_submitData = findViewById(R.id.bt_submitData);
         tv_gestDetails = findViewById(R.id.tv_gestDetails);
         tv_gestGreeting = findViewById(R.id.tv_gestGreeting);
@@ -99,6 +104,13 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
                 addDetails();
             }
         });
+    }
+
+    private void addDetails(){
+        GestureDetails gestDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName, deviceName, deviceMan);
+        String tapGestureId =  gestureAttempt.push().getKey();
+        gestureAttempt.child(tapGestureId).setValue(gestDetails);
+        Toast.makeText(this, "Value Added", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -262,17 +274,5 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
         return false;
-    }
-
-    private void addDetails(){
-        //String id = databaseVelocity.push().getKey();
-        //String tapGestureId =  databaseUser.push().getKey();    //user.getUid();
-
-        //Velocity velocity = new Velocity(id, singleTap, doubleTap, longPress);
-        //GestureDetails gestureDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName, deviceName, deviceMan);
-
-        //databaseVelocity.child(id).setValue(velocity);
-        //databaseUser.child(tapGestureId).setValue(gestureDetails);
-        Toast.makeText(this, "Value Added", Toast.LENGTH_LONG).show();
     }
 }
