@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "597161144811",
+    "firebase_url": "https://myfirebaseauthapp-3530a.firebaseio.com",
+    "project_id": "myfirebaseauthapp-3530a",
+    "storage_bucket": "myfirebaseauthapp-3530a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597161144811:android:fd4c54fcbdcaeadf",
+        "android_client_info": {
+          "package_name": "com.example.jobie.firebaseauthdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "597161144811-nth00rg74a6tntck9ihmno5ram90h2eu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAijbobxXIl_dMI_p0Q7hX3KeRm7Z0vhvI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
