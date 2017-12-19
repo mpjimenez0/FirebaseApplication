@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\Jobie\AndroidStudioProjects\Authentication\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="a3c692daec186002bcb3c7ecd42a61468f24e47b">
+        <dex dex="C:\Users\Jobie\AndroidStudioProjects\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_843f7500c823063888263e190220d5f1d047ec1e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Jobie\AndroidStudioProjects\Authentication\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="C:\Users\Jobie\AndroidStudioProjects\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_ad7a793a06094813a49472add3f6018c66a81a98\classes.dex" />
+    </item>
+
+</items>

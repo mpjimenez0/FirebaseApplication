@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "779584868988",
+    "firebase_url": "https://authentication-48639.firebaseio.com",
+    "project_id": "authentication-48639",
+    "storage_bucket": "authentication-48639.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779584868988:android:3950e5b337439439",
+        "android_client_info": {
+          "package_name": "com.example.jobie.authentication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779584868988-dntmfb37cu94se0fjrqk940hiacumb83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjkTfVS5wm9NVsxwtmOd13U98sJKEIocY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
