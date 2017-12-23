@@ -89,8 +89,6 @@ public class Register extends AppCompatActivity {
         bt_reg_submit.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 registerUser();
-
-                // insert authentication code here (authenticate, then lead straight to the Main Menu)
             }
         });
     }
@@ -125,6 +123,7 @@ public class Register extends AppCompatActivity {
         if(TextUtils.isEmpty(reg_name) == false && TextUtils.isEmpty(reg_email) == false &&
                 TextUtils.isEmpty(reg_pass) == false && TextUtils.isEmpty(reg_city) == false &&
                 TextUtils.isEmpty(reg_bdate) == false){
+            // insert authentication code here (authenticate, then lead straight to the Main Menu)
             startActivity(new Intent(Register.this, MainMenu.class));
         }
     }
