@@ -51,12 +51,16 @@ public class Authentication extends AppCompatActivity {
             }
         });
 
+
         tv_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String getemail = et_email.getText().toString().trim();
-                String getpassword = et_pass.getText().toString().trim();
-                callsignup(getemail, getpassword);
+                finish();
+                startActivity(new Intent(Authentication.this, Register.class));
+
+                //String getemail = et_email.getText().toString().trim();
+                //String getpassword = et_pass.getText().toString().trim();
+                //callsignup(getemail, getpassword);
             }
         });
     }

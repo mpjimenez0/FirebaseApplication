@@ -17,8 +17,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainMenu"></activity>
+<<<<<<< HEAD
         <activity android:name=".SendData"></activity>
         <activity android:name=".ViewProfile"></activity>
+=======
+        <activity android:name=".Register"></activity>
+>>>>>>> master
     </application>
 
 </manifest>

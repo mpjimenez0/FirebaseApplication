@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewSignin = (TextView) findViewById(R.id.textViewSignin);
 
 
-        buttonRegister.setOnClickListener(this);
+        buttonRegister.setOnClickListener(th    is);
         textViewSignin.setOnClickListener(this);
 
 
