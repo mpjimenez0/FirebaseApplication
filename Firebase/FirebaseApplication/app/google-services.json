@@ -12,7 +12,7 @@
         "android_client_info": {
           "package_name": "com.example.student.firebaseapplication"
         }
-      },
+      }
       "oauth_client": [
         {
           "client_id": "206371973413-or3e6tmu0v5s9n9v7n38lobq4vkk1b0b.apps.googleusercontent.com",
@@ -58,14 +58,6 @@
         }
       },
       "oauth_client": [
-        {
-          "client_id": "206371973413-j76vpm88lg77lsql7ida45bnfgl9mnbr.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.entunix_jimenez.firebaseapplication",
-            "certificate_hash": "9569394043ac6c9d8521e4eca1edb7b17eea9e5b"
-          }
-        },
         {
           "client_id": "206371973413-pro3tl47s3d9lvrph9dkec5vktup3grc.apps.googleusercontent.com",
           "client_type": 1,
