@@ -1,6 +1,7 @@
 package com.example.entunix_jimenez.firebaseapplication;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.util.Calendar;
@@ -9,12 +10,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 /**
  * Created by mpjimenez on 12/23/2017.
@@ -22,6 +25,7 @@ import android.widget.Spinner;
 
 
 public class Register extends AppCompatActivity {
+    EditText et_reg_name;
     EditText et_reg_email;
     EditText et_reg_pass;
     Spinner sp_reg_city;
@@ -40,6 +44,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity_layout);
 
+        et_reg_name = findViewById(R.id.et_reg_name);
         et_reg_email = findViewById(R.id.et_reg_email);
         et_reg_pass = findViewById(R.id.et_reg_pass);
         sp_reg_city = findViewById(R.id.sp_reg_city);
@@ -80,5 +85,47 @@ public class Register extends AppCompatActivity {
                 et_reg_bdate.setText(date);
             }
         };
+
+        bt_reg_submit.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                registerUser();
+
+                // insert authentication code here (authenticate, then lead straight to the Main Menu)
+            }
+        });
+    }
+
+    private void registerUser(){
+        String reg_name = et_reg_name.getText().toString().trim();
+        String reg_email = et_reg_email.getText().toString().trim();
+        String reg_pass = et_reg_pass.getText().toString().trim();
+        String reg_gender = sp_reg_gender.getSelectedItem().toString().trim();
+        String reg_city = sp_reg_city.getSelectedItem().toString().trim();
+        String reg_bdate = et_reg_bdate.getText().toString().trim();
+
+        if(TextUtils.isEmpty(reg_name)){
+            Toast.makeText(this, "Enter Name", Toast.LENGTH_SHORT).show();
+        }
+        if(TextUtils.isEmpty(reg_email)){
+            Toast.makeText(this, "Enter Email", Toast.LENGTH_SHORT).show();
+        }
+        if(TextUtils.isEmpty(reg_pass)){
+            Toast.makeText(this, "Enter Pass", Toast.LENGTH_SHORT).show();
+        }
+        if(TextUtils.isEmpty(reg_gender)){
+            Toast.makeText(this, "Enter Gender", Toast.LENGTH_SHORT).show();
+        }
+        if(TextUtils.isEmpty(reg_city)){
+            Toast.makeText(this, "Enter City", Toast.LENGTH_SHORT).show();
+        }
+        if(TextUtils.isEmpty(reg_bdate)){
+            Toast.makeText(this, "Enter Birthdate", Toast.LENGTH_SHORT).show();
+        }
+
+        if(TextUtils.isEmpty(reg_name) == false && TextUtils.isEmpty(reg_email) == false &&
+                TextUtils.isEmpty(reg_pass) == false && TextUtils.isEmpty(reg_city) == false &&
+                TextUtils.isEmpty(reg_bdate) == false){
+            startActivity(new Intent(Register.this, MainMenu.class));
+        }
     }
 }
