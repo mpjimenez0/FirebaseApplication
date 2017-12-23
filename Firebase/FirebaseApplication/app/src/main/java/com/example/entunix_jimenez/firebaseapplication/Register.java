@@ -44,6 +44,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity_layout);
 
+        // layout components declaration (connecting the xml file and the class)
         et_reg_name = findViewById(R.id.et_reg_name);
         et_reg_email = findViewById(R.id.et_reg_email);
         et_reg_pass = findViewById(R.id.et_reg_pass);
@@ -52,6 +53,7 @@ public class Register extends AppCompatActivity {
         bt_reg_submit = findViewById(R.id.bt_reg_submit);
         et_reg_bdate = findViewById(R.id.date);
 
+        // spinner components declaration (referencing the String arrays from the /values/strings.xml)
         city = getResources().getStringArray(R.array.city);
         sp_adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item, city);
         sp_reg_city.setAdapter(sp_adapter);
@@ -94,6 +96,7 @@ public class Register extends AppCompatActivity {
     }
 
     private void registerUser(){
+        // note: This method is for checking if all fields has data on it (because all fields in the register part is mandatory
         String reg_name = et_reg_name.getText().toString().trim();
         String reg_email = et_reg_email.getText().toString().trim();
         String reg_pass = et_reg_pass.getText().toString().trim();
@@ -123,7 +126,7 @@ public class Register extends AppCompatActivity {
         if(TextUtils.isEmpty(reg_name) == false && TextUtils.isEmpty(reg_email) == false &&
                 TextUtils.isEmpty(reg_pass) == false && TextUtils.isEmpty(reg_city) == false &&
                 TextUtils.isEmpty(reg_bdate) == false){
-            // insert authentication code here (authenticate, then lead straight to the Main Menu)
+            // **insert authentication code here (authenticate, then lead straight to the Main Menu)**
             startActivity(new Intent(Register.this, MainMenu.class));
         }
     }
