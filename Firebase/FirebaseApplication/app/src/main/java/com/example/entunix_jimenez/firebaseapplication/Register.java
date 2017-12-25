@@ -123,7 +123,7 @@ public class Register extends AppCompatActivity {
             Toast.makeText(this, "Enter Birthdate", Toast.LENGTH_SHORT).show();
         }
 
-        if(!TextUtils.isEmpty(reg_name) == !TextUtils.isEmpty(reg_email) && !TextUtils.isEmpty(reg_pass) &&
+        if(!TextUtils.isEmpty(reg_name) && !TextUtils.isEmpty(reg_email) && !TextUtils.isEmpty(reg_pass) &&
                 !TextUtils.isEmpty(reg_gender) && !TextUtils.isEmpty(reg_city) && !TextUtils.isEmpty(reg_bdate)){
             // **insert authentication code here (authenticate, then lead straight to the Main Menu)**
             startActivity(new Intent(Register.this, MainMenu.class));
