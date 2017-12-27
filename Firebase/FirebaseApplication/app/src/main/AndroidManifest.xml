@@ -17,6 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainMenu"></activity>
+        <activity android:name=".SendData"></activity>
+        <activity android:name=".ViewProfile"></activity>
         <activity android:name=".Register"></activity>
     </application>
 
