@@ -141,7 +141,6 @@ public class Register extends AppCompatActivity {
             String getemail = et_reg_email.getText().toString().trim();
             String getpassword = et_reg_pass.getText().toString().trim();
             callsignup(getemail, getpassword);
-            
         }
     }
 
@@ -156,6 +155,7 @@ public class Register extends AppCompatActivity {
                     userProfile();
                     Toast.makeText(Register.this, "Created Account", Toast.LENGTH_SHORT).show();
                     Log.d("TESTING", "User profile updated.");
+                    startActivity(new Intent(getApplicationContext(), MainMenu.class));
                 }
             }
         });
