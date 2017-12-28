@@ -22,12 +22,22 @@ import static java.lang.Math.pow;
 public class MainActivity extends AppCompatActivity implements
         OnGestureListener,OnDoubleTapListener{
 
+    String myName;
+    String deviceName = android.os.Build.MODEL;
+    String deviceMan = android.os.Build.MANUFACTURER;
+    String gestureNum;
 
     float singleTapRadius = 25f;
     float longPressRadius = 10f;
     float doubleTapRadius = 200;
 
+
+
     float x, y, sX, sY, fX, fY;
+    long totalTime;
+    int tapCount = 0;
+    int nextCount = 0;
+    boolean breakLoop;
 
     boolean singleTap;
     boolean doubleTap;
@@ -57,12 +67,14 @@ public class MainActivity extends AppCompatActivity implements
         databaseVelocity = FirebaseDatabase.getInstance().getReference();
         databaseGestureDetails = FirebaseDatabase.getInstance().getReference();
 
+        myName = "usertrial";
         x = 0;
         y = 0;
         sX = 0;
         sY = 0;
         fX = 0;
         fY = 0;
+        totalTime = 0;
 
         singleTap = false;
         doubleTap = false;
@@ -77,12 +89,41 @@ public class MainActivity extends AppCompatActivity implements
         GestureDetect = new GestureDetectorCompat(this,this);
         GestureDetect.setOnDoubleTapListener(this);
 
+//        submitData.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                if(tapCount == 0){
+//                    Toast.makeText(MainActivity.this, "No Gesture Yet", Toast.LENGTH_SHORT).show();
+//                }
+//                else{
+//                    addVelocity();
+//                }
+//            }
+//        });
+
         submitData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addVelocity();
+
+                if (tapCount == 0) {
+                    Toast.makeText(MainActivity.this, "No Gesture Yet", Toast.LENGTH_SHORT).show();
+                } else {
+                    nextCount++;
+                    gestureNum = "Gesture " + nextCount;
+                    addVelocity();
+                    textView.setText("Input Gesture");
+                    tapCount = 0;
+                }
+
+                if (nextCount == 5){
+                    submitData.setText("Next");
+                    finish();
+                }
             }
         });
+
+
 
     }
 
@@ -90,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements
     public boolean onTouchEvent(MotionEvent event) {
         GestureDetect.onTouchEvent(event);
 
+        totalTime = upTime - event.getDownTime();
         x = event.getX();
         y = event.getY();
 
@@ -102,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements
                 fX = event.getX();
                 fY = event.getY();
                 upTime = event.getEventTime();
+                tapCount++;
                 break;
         }
 
@@ -226,21 +269,25 @@ public class MainActivity extends AppCompatActivity implements
 
         textView.setText(
                 "\n\nON TOUCHEVENT"
-                        +"\nSINGLE TAP: " + singleTap
-                        +"\nDOUBLE TAP: " + doubleTap
-                        +"\nLONG PRESS: " + longPress
-                        +"\nSWIPEX: " + swipeX
-                        +"\nSWIPEY: " + swipeY
-                        +"\nSCROLL: " + scroll
-                        +"\nCurrent X: " + x
-                        +"\nCurrent Y: " + y
-                        +"\nDown X: " + sX
-                        +"\nDownY: " + sY
-                        +"\nUp X: " + fX
-                        +"\nUp Y: " + fY
-                        +"\nDown Time: " + event.getDownTime()
-                        +"\nupTime: " + upTime
-                        +"\nEvent Time: " + event.getEventTime()
+                        + "\nSINGLE TAP: " + singleTap
+//                        + "\nDOUBLE TAP: " + doubleTap
+//                        + "\nLONG PRESS: " + longPress
+//                        + "\nSWIPE HORIZONTAL: " + swipeX
+//                        + "\nSWIPE VERTICAL: " + swipeY
+//                        + "\nSCROLL: " + scroll
+                        + "\nCurrent X: " + x
+                        + "\nCurrent Y: " + y
+                        + "\nDown X: " + sX
+                        + "\nDownY: " + sY
+                        + "\nUp X: " + fX
+                        + "\nUp Y: " + fY
+                        + "\nDown Time: " + event.getDownTime() + "ms"
+                        + "\nEvent Time: " + event.getEventTime() + "ms"
+                        + "\nupTime: " + upTime + "ms"
+                        + "\nEvent Duration: " + totalTime + "ms"
+                        + "\ngetPointerCount: " + event.getPointerCount()
+                        + "\nDevice Name: " + deviceName
+                        + "\nDevice Manufacturer: " + deviceMan
 
         );
 
@@ -252,11 +299,13 @@ public class MainActivity extends AppCompatActivity implements
         String tapGestureId = databaseGestureDetails.push().getKey();
 //        String tapGestureId =  databaseUser.push().getKey();    //user.getUid();
 
-        Velocity velocity = new Velocity(id, singleTap, doubleTap, longPress);
-        GestureDetails
+        SingleTap velocity = new SingleTap(id, singleTap);
+//        Velocity velocity = new Velocity(id, singleTap, doubleTap, longPress, swipeX, swipeY, scroll);
+        GestureDetails gestureDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName, deviceName, deviceMan);
 //        GestureDetails gestureDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName, deviceName, deviceMan);
 
-        databaseVelocity.child("Velocity").child(id).setValue(velocity);
+        databaseVelocity.child("Velocity").child("SingleTap").child(gestureNum).child(id).setValue(velocity);
+        databaseGestureDetails.child("Gesture Details").child("SingleTap").child(gestureNum).child(tapGestureId).setValue(gestureDetails);
 //        databaseUser.child(tapGestureId).setValue(gestureDetails);
         Toast.makeText(this, "Value Added", Toast.LENGTH_LONG).show();
     }
