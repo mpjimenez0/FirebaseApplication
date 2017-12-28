@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LatestGestures.iml" filepath="$PROJECT_DIR$/LatestGestures.iml" />
+      <module fileurl="file://C:\Users\Shen\Documents\GitHub\FirebaseApplication\LatestGestures\LatestGestures.iml" filepath="C:\Users\Shen\Documents\GitHub\FirebaseApplication\LatestGestures\LatestGestures.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Shen\Documents\GitHub\FirebaseApplication\LatestGestures\app\app.iml" filepath="C:\Users\Shen\Documents\GitHub\FirebaseApplication\LatestGestures\app\app.iml" />
     </modules>
   </component>
 </project>

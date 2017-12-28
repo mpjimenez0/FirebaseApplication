@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "18550907801",
+    "firebase_url": "https://latestgestures.firebaseio.com",
+    "project_id": "latestgestures",
+    "storage_bucket": "latestgestures.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:18550907801:android:ed4ae7b041bdc8ec",
+        "android_client_info": {
+          "package_name": "pbl.latestgestures"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "18550907801-g5c149rbs4h71b89o8cdu855iqtl0liv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pbl.latestgestures",
+            "certificate_hash": "3ef51ce474071cf82232e9669de30dfa5098f9fb"
+          }
+        },
+        {
+          "client_id": "18550907801-08e0k7nfg11jdetlvecmfjf6v9549mhr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqqaRmaD1FRcBQ1HmXd6aPPqXET1nPnsg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "18550907801-08e0k7nfg11jdetlvecmfjf6v9549mhr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

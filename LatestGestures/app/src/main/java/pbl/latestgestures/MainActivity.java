@@ -4,7 +4,13 @@ import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +43,19 @@ public class MainActivity extends AppCompatActivity implements
 
 
     private static TextView textView;
+    private Button submitData;
+
+    DatabaseReference databaseVelocity;
+    DatabaseReference databaseGestureDetails;
+
     private GestureDetectorCompat GestureDetect;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        databaseVelocity = FirebaseDatabase.getInstance().getReference();
+        databaseGestureDetails = FirebaseDatabase.getInstance().getReference();
 
         x = 0;
         y = 0;
@@ -58,9 +72,18 @@ public class MainActivity extends AppCompatActivity implements
         swipeX = false;
         swipeY = false;
 
+        submitData = (Button)findViewById(R.id.submitData);
         textView = (TextView)findViewById(R.id.textView);
         GestureDetect = new GestureDetectorCompat(this,this);
         GestureDetect.setOnDoubleTapListener(this);
+
+        submitData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addVelocity();
+            }
+        });
+
     }
 
     @Override
@@ -223,6 +246,21 @@ public class MainActivity extends AppCompatActivity implements
 
         return super.onTouchEvent(event);
     }
+
+    private void addVelocity(){
+        String id = databaseVelocity.push().getKey();
+        String tapGestureId = databaseGestureDetails.push().getKey();
+//        String tapGestureId =  databaseUser.push().getKey();    //user.getUid();
+
+        Velocity velocity = new Velocity(id, singleTap, doubleTap, longPress);
+        GestureDetails
+//        GestureDetails gestureDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName, deviceName, deviceMan);
+
+        databaseVelocity.child("Velocity").child(id).setValue(velocity);
+//        databaseUser.child(tapGestureId).setValue(gestureDetails);
+        Toast.makeText(this, "Value Added", Toast.LENGTH_LONG).show();
+    }
+
 
 
 
