@@ -1,5 +1,6 @@
 package pbl.latestgestures;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements
 //                }
 //            }
 //        });
-
+        textView.setText("Input Gesture# 1");
         submitData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,13 +113,16 @@ public class MainActivity extends AppCompatActivity implements
                     nextCount++;
                     gestureNum = "Gesture " + nextCount;
                     addVelocity();
-                    textView.setText("Input Gesture");
+                    int countHolder = nextCount+1;
+                    textView.setText("Input Gesture# "+countHolder);
                     tapCount = 0;
                 }
 
                 if (nextCount == 5){
                     submitData.setText("Next");
-                    finish();
+                    textView.setText("Proceed to next gesture.");
+                    Intent intent = new Intent(MainActivity.this, DoubleTapActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -299,8 +303,8 @@ public class MainActivity extends AppCompatActivity implements
         String tapGestureId = databaseGestureDetails.push().getKey();
 //        String tapGestureId =  databaseUser.push().getKey();    //user.getUid();
 
-        SingleTap velocity = new SingleTap(id, singleTap);
-//        Velocity velocity = new Velocity(id, singleTap, doubleTap, longPress, swipeX, swipeY, scroll);
+        Velocity velocity = new Velocity(id, singleTap, doubleTap, longPress, swipeX, swipeY, scroll);
+
         GestureDetails gestureDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName, deviceName, deviceMan);
 //        GestureDetails gestureDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName, deviceName, deviceMan);
 
