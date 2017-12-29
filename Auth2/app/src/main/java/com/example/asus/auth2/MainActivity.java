@@ -160,12 +160,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         String city = spinnercity.getSelectedItem().toString();
         String gender = spinnergender.getSelectedItem().toString();
+        String date = mDisplayDate.getText().toString();
 
         if (!TextUtils.isEmpty(gender)){
 
             String id = databaseInfo.push().getKey();
 
-            info artist = new info(id, gender, city, email);
+            info artist = new info(id, gender, city, email, date);
 
             databaseInfo.child(id).setValue(artist);
 

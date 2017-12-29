@@ -10,19 +10,19 @@ public class info {
     String infoGender;
     String infoCity;
     String email;
+    String infoBirthdate;
 
 
     public info() {
 
     }
 
-
-    public info(String infoId, String infoGender, String infoCity, String email) {
+    public info(String infoId, String infoGender, String infoCity, String email, String infoBirthdate) {
         this.infoId = infoId;
         this.infoGender = infoGender;
         this.infoCity = infoCity;
         this.email = email;
-
+        this.infoBirthdate = infoBirthdate;
     }
 
     public String getInfoId() {
@@ -39,6 +39,10 @@ public class info {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getInfoBirthdate() {
+        return infoBirthdate;
     }
 }
 
