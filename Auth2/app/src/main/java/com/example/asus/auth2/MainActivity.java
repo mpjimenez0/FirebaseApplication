@@ -132,16 +132,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void registerUser() {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
+        String city = spinnercity.getSelectedItem().toString();
+        String gender = spinnergender.getSelectedItem().toString();
+        String date = mDisplayDate.getText().toString();
 
         //empty email
         if (TextUtils.isEmpty(email)){
             Toast.makeText(this,"Enter email", Toast.LENGTH_SHORT).show();
             return;
-        }
+        }else
         //empty password
         if (TextUtils.isEmpty(password)){
             Toast.makeText(this,"Enter password", Toast.LENGTH_SHORT).show();
+            return;
+        }else
+        if (TextUtils.isEmpty(gender)){
+            Toast.makeText(this,"Enter gender", Toast.LENGTH_SHORT).show();
+            return;
+        }else
+        if (TextUtils.isEmpty(city)){
+            Toast.makeText(this,"Enter city", Toast.LENGTH_SHORT).show();
+            return;
+        }else
+        if (TextUtils.isEmpty(date)){
+            Toast.makeText(this,"Enter Birthdate", Toast.LENGTH_SHORT).show();
+            return;
         }
+        else
+        {
+            String id = databaseInfo.push().getKey();
+
+            info artist = new info(id, gender, city, email, date);
+
+            databaseInfo.child(id).setValue(artist);
+        }
+
+
 
         firebaseAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -157,22 +183,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
 
+        //Database//
 
-        String city = spinnercity.getSelectedItem().toString();
-        String gender = spinnergender.getSelectedItem().toString();
-        String date = mDisplayDate.getText().toString();
 
-        if (!TextUtils.isEmpty(gender)){
 
-            String id = databaseInfo.push().getKey();
-
-            info artist = new info(id, gender, city, email, date);
-
-            databaseInfo.child(id).setValue(artist);
-
-        }else{
-            Toast.makeText(this, "Enter gender", Toast.LENGTH_SHORT).show();
-        }
 
     }
 
