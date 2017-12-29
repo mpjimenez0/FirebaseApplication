@@ -27,6 +27,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.ProviderQueryResult;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -35,10 +36,9 @@ import org.w3c.dom.Text;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     //Spinner
     public Spinner spinnercity;
-    public String[] city;
-    public ArrayAdapter<String > adapter;
+
     public Spinner spinnergender;
-    public String [] gender;
+
 
     //Date
     private TextView mDisplayDate;
@@ -136,6 +136,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String gender = spinnergender.getSelectedItem().toString();
         String date = mDisplayDate.getText().toString();
 
+        //Check email if exist
+        firebaseAuth.fetchProvidersForEmail(editTextEmail.getText().toString())
+                .addOnCompleteListener(new OnCompleteListener<ProviderQueryResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<ProviderQueryResult> task) {
+                        boolean check = !task.getResult().getProviders().isEmpty();
+
+                        if (check){
+                            Toast.makeText(getApplicationContext(), "Email already exist",Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+
+        //end of check email if exist
+
+
         //empty email
         if (TextUtils.isEmpty(email)){
             Toast.makeText(this,"Enter email", Toast.LENGTH_SHORT).show();
@@ -191,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             startActivity(new Intent(getApplicationContext(), Profile.class));
                         }
                         else {
-                            Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Email already Exist", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -202,6 +219,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+
 
     @Override
     public void onClick(View view) {
