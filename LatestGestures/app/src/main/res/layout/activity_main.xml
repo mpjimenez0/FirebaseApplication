@@ -7,10 +7,24 @@
     tools:context="pbl.latestgestures.MainActivity">
 
     <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Single Tap"
+        android:textSize="25dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:gravity="center"/>
+
+    <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Input Gesture" />
+        android:text="Input Gesture"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/text1"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
