@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Authentication.iml" filepath="$PROJECT_DIR$/Authentication.iml" />
+      <module fileurl="file://C:\Users\asus\Documents\GitHub\FirebaseApplication\Authentication\Authentication.iml" filepath="C:\Users\asus\Documents\GitHub\FirebaseApplication\Authentication\Authentication.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\asus\Documents\GitHub\FirebaseApplication\Authentication\app\app.iml" filepath="C:\Users\asus\Documents\GitHub\FirebaseApplication\Authentication\app\app.iml" />
     </modules>
   </component>
 </project>
