@@ -146,18 +146,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this,"Enter password", Toast.LENGTH_SHORT).show();
             return;
         }else
+        if (password.length() < 6){
+            Toast.makeText(this," Password min of 6 characters", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        //Empty gender
         if (TextUtils.isEmpty(gender)){
             Toast.makeText(this,"Enter gender", Toast.LENGTH_SHORT).show();
             return;
         }else
+        //Empty Citu
         if (TextUtils.isEmpty(city)){
             Toast.makeText(this,"Enter city", Toast.LENGTH_SHORT).show();
             return;
         }else
+        //empty bday
         if (TextUtils.isEmpty(date)){
             Toast.makeText(this,"Enter Birthdate", Toast.LENGTH_SHORT).show();
             return;
         }
+        //complete infos
         else
         {
             String id = databaseInfo.push().getKey();
