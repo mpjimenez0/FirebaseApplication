@@ -141,6 +141,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this,"Enter email", Toast.LENGTH_SHORT).show();
             return;
         }else
+        if (!email.contains("@")){
+            Toast.makeText(this,"Email not valid", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else
         //empty password
         if (TextUtils.isEmpty(password)){
             Toast.makeText(this,"Enter password", Toast.LENGTH_SHORT).show();
