@@ -1,9 +1,10 @@
 package pbl.latestgestures;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -16,12 +17,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.view.GestureDetector.OnDoubleTapListener;
-import static android.view.GestureDetector.OnGestureListener;
 import static java.lang.Math.pow;
 
 public class LongPress extends AppCompatActivity implements
-        OnGestureListener,OnDoubleTapListener{
+        GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
 
     String myName;
     String deviceName = android.os.Build.MODEL;
@@ -50,7 +49,7 @@ public class LongPress extends AppCompatActivity implements
 
     long upTime = 0;
 
-    List<TapData> Data = new ArrayList<TapData>();
+    List<LongPress.TapData> Data = new ArrayList();
 
 
     private static TextView textView;
@@ -63,7 +62,7 @@ public class LongPress extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_long_press);
 
         databaseVelocity = FirebaseDatabase.getInstance().getReference();
         databaseGestureDetails = FirebaseDatabase.getInstance().getReference();
@@ -102,6 +101,7 @@ public class LongPress extends AppCompatActivity implements
 //                }
 //            }
 //        });
+
         textView.setText("Input Gesture# 1");
         submitData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,7 +167,7 @@ public class LongPress extends AppCompatActivity implements
             } else {
                 singleTap = true;
                 // pagsingletap add sa data
-                TapData data = new TapData();
+                LongPress.TapData data = new LongPress.TapData();
                 data.prevX = (long) event.getX();
                 data.prevY = (long) event.getY();
                 data.time = upTime;
@@ -272,9 +272,9 @@ public class LongPress extends AppCompatActivity implements
 
         textView.setText(
                 "\n\nON TOUCHEVENT"
-                        + "\nSINGLE TAP: " + singleTap
+//                        + "\nSINGLE TAP: " + singleTap
 //                        + "\nDOUBLE TAP: " + doubleTap
-//                        + "\nLONG PRESS: " + longPress
+                          + "\nLONG PRESS: " + longPress
 //                        + "\nSWIPE HORIZONTAL: " + swipeX
 //                        + "\nSWIPE VERTICAL: " + swipeY
 //                        + "\nSCROLL: " + scroll
@@ -303,7 +303,6 @@ public class LongPress extends AppCompatActivity implements
 //        String tapGestureId =  databaseUser.push().getKey();    //user.getUid();
 
         Velocity velocity = new Velocity(id, singleTap, doubleTap, longPress, swipeX, swipeY, scroll);
-
         GestureDetails gestureDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName, deviceName, deviceMan);
 //        GestureDetails gestureDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName, deviceName, deviceMan);
 
@@ -420,3 +419,4 @@ public class LongPress extends AppCompatActivity implements
 
 
 }
+
