@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DoubleTapActivity"></activity>
+        <activity android:name=".DoubleTap" />
+        <activity android:name=".LongPress"></activity>
     </application>
 
 </manifest>
