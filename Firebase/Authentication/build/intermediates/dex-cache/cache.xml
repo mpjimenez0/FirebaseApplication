@@ -3,21 +3,201 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Jobie\AndroidStudioProjects\Authentication\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jar="C:\Android\.android\build-cache\f30718b98375b4cfce0406f74f028d0be0ce896d\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
-        sha1="a3c692daec186002bcb3c7ecd42a61468f24e47b">
-        <dex dex="C:\Users\Jobie\AndroidStudioProjects\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_843f7500c823063888263e190220d5f1d047ec1e\classes.dex" />
+        sha1="20ca7888c59f63d439f218a8810c88039f8bc7db">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d9f9030bae30be52230c450f679609ddb7d7207f\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Jobie\AndroidStudioProjects\Authentication\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="C:\Android\.android\build-cache\ab7054c5cad0fa62980879350edb60cb08967ee6\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="18d31838aa4fcc768a8a0516e22cc13b94655d89">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9a99b9233fafb87fa66eb460466dedc1cb91a845\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="C:\Users\Jobie\AndroidStudioProjects\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_ad7a793a06094813a49472add3f6018c66a81a98\classes.dex" />
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_58827eba7e702fe4378330966707fdedb2fdd07c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\.android\build-cache\521a8c65533b9f79f1870c4d97c21ac225efe063\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="593fbaec1c3e100480a2bd72457b64b7dde6ac2d">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7718e3910eb1159b6ea2f497e9157d6ba1c81b44\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\.android\build-cache\3f06380c0155edfe5c97b24435a962ee1728214c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="44120508d7240c3e34a05957981a5c3c9b9f61aa">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4fc674db625867931287e8d73b78881f5d7f698c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\.android\build-cache\402df1e7813b45061a7875beaa44ae3bf4256258\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="9935891f23923f39d002087085d9696568a9f657">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_67f8ec83336a0591e9390c129478490e6d3e721d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\.android\build-cache\b8d38ae402a9839b5204eb66f732d1b5f707c22e\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0eb852391b0a8aaba1564f39c4eaa6ddbb76c007\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="f06d44f01cfc394e1fdc40c985e10c4b7c21173e">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_0af522f93917c3ff74cae81738cf2fa620a7563c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\.android\build-cache\c6fbc66c37e8d08739d0eba6aab3df6ccce99608\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="363f626ad5686283250cdb6073ae1bba5cb07a87">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8a2960384825b003cd816613cf427eb9294f0d3e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Shen\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\26.0.0-alpha1\support-annotations-26.0.0-alpha1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="023ee503b631f69511e335a061ea008f8da60f40">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-26.0.0-alpha1_96dd826d4c35295c63840691513a32a99b4a542f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\.android\build-cache\cec6688a277036541f9d9cf9e12c5e99e2ab7153\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="30489a97b06cc3945bdbcc1770089af9e3b3b64d">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3bb56e3ffd944298ce1842f1726c78d928f94f9c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\.android\build-cache\15ea6b654404a6a33e014e038aba2781d731c40e\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="e791f7f2fbf9ca5b3b576916533f844dfb384024">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c5586a6f729df1375b7466472929e057a5a29a0a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\.android\build-cache\653b9ec686da7a4db45fd8272762e84a4b5d39a1\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="952944218ecedea1554a513dec0c14d570642843">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_164704a6945bb5bae6bf6b75cf38d17164eda16b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\.android\build-cache\706675769b0ace61d3b86148da3ab694d83cf400\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="fb15fd9774b5c51dcb39d8e6fa1b6f06bcd1cd34">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_73a34af20fd1d322dcc9a078f934fc24f5dfc0b5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\.android\build-cache\4046d808525e7576a50fe61543d5323c9958ca95\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_25c2aa977c1d40cc1b702c705fb6c9094794c5cc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\.android\build-cache\49f03f9aa8e57d79305a93e9bb8be5840b8d6078\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="dd7676ac12aa6653718b7ea33d93ce9d6915d526">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_310bead6e83821d0c4d9b6ab5f6a6aa44adcd85a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\.android\build-cache\0a0d17290be20d22fea081df961f3f71317b661d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="47471eb19df288158b00b8d9cfa41bce7373f5cc">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a41f9ba20f44dd6fdb393a945293f125801cdff9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\.android\build-cache\f09951f7fd383434126f5418c49f301c0db38b67\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="fcd01fd11233459f546c437ec927e9b61bf7caf1">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ff031f94afb90333e9243da26a88f7b7f770125a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\.android\build-cache\89d7f09c725301e25a42bfb394c1b017456c11a1\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="88246166d5afb106f532f6e6deae683c66b42c89">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5780f905888efed59e7198bce9ce1c1768191436\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\.android\build-cache\58e92008daa8fe997858cd3d08f9027be71385fa\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="2e92aa0163544a804a0b34f169ca61801770839a">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_124bff5a7129c98744bbeaf64b7c27e570b38e65\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\.android\build-cache\dea6b59173e7a27e0b5d53e69a97de7601564cda\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="dc4c18602ecffb3e69cda6cdc51ba4feac0f97d7">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e0a2f42221e92da4588a46660ee639d13bfa69ca\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\.android\build-cache\c5aa25e781cf059a2fa2b1314661d4392592c5e6\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="4838df6db988160b107e954e02a745370df543b6">
+        <dex dex="C:\Users\Shen\Documents\GitHub\FirebaseApplication\Firebase\Authentication\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_27694f5e3fe0504e1b55c5f63a0e4571baa38106\classes.dex" />
     </item>
 
 </items>
