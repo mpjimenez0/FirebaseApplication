@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements
                 if (nextCount == 5){
                     submitData.setText("Next");
                     textView.setText("Proceed to next gesture.");
-                    Intent intent = new Intent(MainActivity.this, DoubleTapActivity.class);
+                    Intent intent = new Intent(MainActivity.this, DoubleTap.class);
                     startActivity(intent);
                 }
             }
