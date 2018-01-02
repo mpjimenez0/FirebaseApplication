@@ -19,7 +19,8 @@
         <activity android:name=".DoubleTap" />
         <activity android:name=".LongPress" />
         <activity android:name=".SwipeX" />
-        <activity android:name=".SwipeY"></activity>
+        <activity android:name=".SwipeY" />
+        <activity android:name=".Scroll"></activity>
     </application>
 
 </manifest>
