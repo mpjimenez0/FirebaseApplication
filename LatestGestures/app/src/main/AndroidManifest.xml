@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".DoubleTap" />
-        <activity android:name=".LongPress"></activity>
+        <activity android:name=".LongPress" />
+        <activity android:name=".SwipeX"></activity>
     </application>
 
 </manifest>
