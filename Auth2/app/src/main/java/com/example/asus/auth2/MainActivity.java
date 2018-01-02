@@ -65,9 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         spinnercity = (Spinner) findViewById(R.id.city);
         spinnergender = (Spinner) findViewById(R.id.gender);
-
         databaseInfo = FirebaseDatabase.getInstance().getReference("info");
-
 
         //Date
         mDisplayDate = (TextView) findViewById(R.id.date);
@@ -123,11 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    //Database command for Spinner//
-    private void addArtist(){
 
-    }
-    //End of Database command for Spinner//
 
     private void registerUser() {
         String email = editTextEmail.getText().toString().trim();
@@ -158,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this,"Enter email", Toast.LENGTH_SHORT).show();
             return;
         }else
+            //invalid email
         if (!email.contains("@")){
             Toast.makeText(this,"Email not valid", Toast.LENGTH_SHORT).show();
             return;
@@ -168,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this,"Enter password", Toast.LENGTH_SHORT).show();
             return;
         }else
+        //password not 6 characters
         if (password.length() < 6){
             Toast.makeText(this," Password min of 6 characters", Toast.LENGTH_SHORT).show();
             return;
@@ -208,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             startActivity(new Intent(getApplicationContext(), Profile.class));
                         }
                         else {
-                            Toast.makeText(MainActivity.this, "Email already Exist", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -228,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             registerUser();
 
         }
-
+        else
         if (view == textViewSignin){
             startActivity(new Intent(this, LoginActivity.class));
         }
