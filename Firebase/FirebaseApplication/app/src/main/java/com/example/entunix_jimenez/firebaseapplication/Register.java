@@ -146,9 +146,9 @@ public class Register extends AppCompatActivity {
             return;
         }else
         if (!reg_email.contains("@")){
-                Toast.makeText(this,"Email not valid", Toast.LENGTH_SHORT).show();
-                return;
-            }
+            Toast.makeText(this,"Email not valid", Toast.LENGTH_SHORT).show();
+            return;
+        }
         else
         if (TextUtils.isEmpty(reg_pass)){
             Toast.makeText(this,"Enter password", Toast.LENGTH_SHORT).show();
@@ -169,9 +169,9 @@ public class Register extends AppCompatActivity {
             return;
         }else
         if (TextUtils.isEmpty(reg_bdate)){
-                Toast.makeText(this,"Enter Birthdate", Toast.LENGTH_SHORT).show();
-                return;
-            }
+            Toast.makeText(this,"Enter Birthdate", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         if(!TextUtils.isEmpty(reg_name) && !TextUtils.isEmpty(reg_email) && !TextUtils.isEmpty(reg_pass) &&
                 !TextUtils.isEmpty(reg_gender) && !TextUtils.isEmpty(reg_city) && !TextUtils.isEmpty(reg_bdate)){
