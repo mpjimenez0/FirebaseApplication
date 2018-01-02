@@ -20,7 +20,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class Authentication extends AppCompatActivity {
     public FirebaseAuth mAuth;
-    private EditText et_email, et_pass, et_name;
+    private EditText et_email, et_pass;
     private Button bt_signin;
     private TextView tv_signup;
 
@@ -33,7 +33,6 @@ public class Authentication extends AppCompatActivity {
 
         tv_signup = findViewById(R.id.tv_signup);
         bt_signin = findViewById(R.id.bt_signin);
-        et_name = findViewById(R.id.et_name);
         et_email = findViewById(R.id.et_email);
         et_pass = findViewById(R.id.et_pass);
 
@@ -65,37 +64,6 @@ public class Authentication extends AppCompatActivity {
         });
     }
 
-    // Create Account
-    private void callsignup(String email, String password) {
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                Log.d("TESTING", "createUserWithEmail:onComplete:" + task.isSuccessful());
-                if (!task.isSuccessful()) {
-                    Toast.makeText(Authentication.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
-                } else {
-                    userProfile();
-                    Toast.makeText(Authentication.this, "Created Account", Toast.LENGTH_SHORT).show();
-                    Log.d("TESTING", "User profile updated.");
-                }
-            }
-        });
-    }
-
-    private void userProfile() {
-        FirebaseUser user =  mAuth.getCurrentUser();
-        if(user != null) {
-            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(et_name.getText().toString().trim()).build();
-            user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>(){
-                @Override
-                public void onComplete(@NonNull Task<Void> task){
-                    if(task.isSuccessful()){
-                        Log.d("TESTING", "User Profile Updated!" + task.isSuccessful());
-                    }
-                }
-            });
-        }
-    }
 
     private void callsignin(String email, String password){
         mAuth.signInWithEmailAndPassword(email, password)

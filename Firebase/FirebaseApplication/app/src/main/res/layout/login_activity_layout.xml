@@ -5,18 +5,6 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/et_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="30dp" />
-
-    <EditText
         android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -127,7 +127,8 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
     }
 
     private void addDetails(){
-        GestureDetails gestDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName, deviceName, deviceMan);
+        GestureDetails gestDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName,
+                deviceName, deviceMan, singleTap, doubleTap, longPress, scroll, fling, swipeX, swipeY);
         String tapGestureId =  gestureAttempt.push().getKey();
         gestureAttempt.child(tapGestureId).setValue(gestDetails);
         Toast.makeText(this, "Value Added", Toast.LENGTH_LONG).show();
