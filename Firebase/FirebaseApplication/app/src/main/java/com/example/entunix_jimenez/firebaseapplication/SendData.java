@@ -58,7 +58,7 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
 
     // LAYOUT VARIABLES
     Button bt_submitData;
-    TextView tv_gestDetails, tv_gestGreeting;
+    TextView tv_gestDetails, tv_gestGreeting, tv_gesture, tv_gest_counter;
 
     // FIREBASE VARIABLES
     private FirebaseAuth mAuth;
@@ -97,6 +97,8 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
         bt_submitData = findViewById(R.id.bt_submitData);
         tv_gestDetails = findViewById(R.id.tv_gestDetails);
         tv_gestGreeting = findViewById(R.id.tv_gestGreeting);
+        tv_gesture = findViewById(R.id.tv_gesture);
+        tv_gest_counter = findViewById(R.id.tv_gest_counter);
 
         if(mAuth.getCurrentUser() == null){
             finish();
@@ -118,10 +120,18 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
                     Toast.makeText(SendData.this, "No Gesture Yet", Toast.LENGTH_SHORT).show();
                 }else{
                     nextCount++;
+                    gestureNum = "Gesture" + nextCount;
+                    addDetails();
+                    int countHolder = nextCount+1;
+                    tv_gest_counter.setText("Input Gesture# " + countHolder);
+                    tapCount = 0;
                 }
 
-
-                addDetails();
+                if(nextCount == 5){
+                    bt_submitData.setText("Next");
+                    tv_gesture.setText("Proceed to next gesture");
+                    finish();
+                }
             }
         });
     }
@@ -139,8 +149,8 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
         GestureDetect.onTouchEvent(event);
 
         tv_gestDetails = findViewById(R.id.tv_gestDetails);
-        totalTime = event.getDownTime() - upTime;
 
+        totalTime = event.getDownTime() - upTime;
         x = event.getX();
         y = event.getY();
 
@@ -171,9 +181,9 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
         }
 
         //SINGLE TAP
-        singleTapFunc(touchDuration, curPos, downPos);
+        singleTapFunc(touchDuration, curPos, downPos, x, y, upTime);
         //DOUBLE TAP
-        doubleTapFunc(tapPos);
+        doubleTapFunc();
         //LONGPRESS
         longPressFunc(eventDuration, curPos, downPos);
         //HORIZONTAL SWIPE
@@ -209,7 +219,7 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
         return super.onTouchEvent(event);
     }
 
-    public void singleTapFunc(float touchDuration, float curPos, float downPos) {
+    public void singleTapFunc(float touchDuration, float curPos, float downPos, float x, float y, long upTime) {
         if (touchDuration < 500) {
             singleTap = true;
             longPress = false;
@@ -217,18 +227,35 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
             scroll = false;
             swipeX = false;
             swipeY = false;
+            if(Math.abs(curPos - downPos) > singleTapRadius){
+                singleTap = false;
+            }else{
+                singleTap = true;
+                SendData.TapData data = new SendData.TapData();
+                data.prevX = x;
+                data.prevY = y;
+                data.time = upTime;
+                Data.add(data);
+            }
         }
     }
 
-    public void doubleTapFunc(float tapPos) {
-        if (tapCount == 2) {
-            if (tapPos <= singleTapRadius) {
-                singleTap = false;
-                longPress = false;
-                doubleTap = true;
-                scroll = false;
-                swipeX = false;
-                swipeY = false;
+    public void doubleTapFunc() {
+        if(Data.size() > 1){
+            singleTap = false;
+            longPress = false;
+            doubleTap = true;
+            scroll = false;
+            swipeX = false;
+            swipeY = false;
+            if(Math.abs(Data.get(Data.size() - 1).prevX - Data.get(Data.size() - 2).prevX) > singleTapRadius){
+                doubleTap = false;
+            }
+            if (Math.abs(Data.get(Data.size() - 1).prevY - Data.get(Data.size() - 2).prevY) > singleTapRadius) {
+                doubleTap = false;
+            }
+            if (Math.abs(Data.get(Data.size() - 1).time - Data.get(Data.size() - 2).time) > 200) {
+                doubleTap = false;
             }
         }
     }

@@ -25,13 +25,14 @@
         android:text="Input Gesture"
         android:layout_centerInParent="true"
         android:layout_below="@+id/text1"/>
+
     <Button
+        android:id="@+id/submitData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/submitData"
-        android:text="Submit"
-        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView"
         android:orientation="vertical"
-        android:layout_alignParentBottom="true"/>
+        android:text="Submit" />
 
 </RelativeLayout>
