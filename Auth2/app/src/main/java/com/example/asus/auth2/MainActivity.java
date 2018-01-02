@@ -35,20 +35,17 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     //Spinner
-    public Spinner spinnercity;
-
-    public Spinner spinnergender;
+    public Spinner sp_reg_city;
+    public Spinner sp_reg_gender;
 
 
     //Date
-    private TextView mDisplayDate;
+    private EditText et_reg_bdate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
-
-
-    private Button buttonRegister;
-    private EditText editTextEmail;
-    private EditText editTextPassword;
+    private Button bt_reg_submit;
+    private EditText et_reg_email;
+    private EditText  et_reg_pass;
     private TextView textViewSignin;
     DatabaseReference databaseInfo;
 
@@ -63,14 +60,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
 
-        spinnercity = (Spinner) findViewById(R.id.city);
-        spinnergender = (Spinner) findViewById(R.id.gender);
+        sp_reg_city= (Spinner) findViewById(R.id.sp_reg_city);
+        sp_reg_gender = (Spinner) findViewById(R.id.sp_reg_gender);
         databaseInfo = FirebaseDatabase.getInstance().getReference("info");
 
         //Date
-        mDisplayDate = (TextView) findViewById(R.id.date);
+        et_reg_bdate = (EditText) findViewById(R.id.et_reg_bdate);
 
-        mDisplayDate.setOnClickListener(new View.OnClickListener() {
+        et_reg_bdate.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
@@ -94,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 month = month + 1;
 
                 String date = month + "/" + day + "/" + year;
-                mDisplayDate.setText(date);
+                et_reg_bdate.setText(date);
 
             }
         };
@@ -108,13 +105,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(getApplicationContext(), Profile.class));
         }
 
-        buttonRegister = (Button) findViewById(R.id.buttonRegister);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
+        bt_reg_submit= (Button) findViewById(R.id.buttonRegister);
+        et_reg_pass = (EditText) findViewById(R.id.et_reg_pass);
+        et_reg_email = (EditText) findViewById(R.id.et_reg_email);
         textViewSignin = (TextView) findViewById(R.id.textViewSignin);
 
 
-        buttonRegister.setOnClickListener(this);
+        bt_reg_submit.setOnClickListener(this);
         textViewSignin.setOnClickListener(this);
 
 
@@ -124,14 +121,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void registerUser() {
-        String email = editTextEmail.getText().toString().trim();
-        String password = editTextPassword.getText().toString().trim();
-        String city = spinnercity.getSelectedItem().toString();
-        String gender = spinnergender.getSelectedItem().toString();
-        String date = mDisplayDate.getText().toString();
+        String email = et_reg_email.getText().toString().trim();
+        String password = et_reg_pass.getText().toString().trim();
+        String city = sp_reg_city.getSelectedItem().toString();
+        String gender = sp_reg_gender.getSelectedItem().toString();
+        String date = et_reg_bdate.getText().toString();
 
         //Check email if exist
-        firebaseAuth.fetchProvidersForEmail(editTextEmail.getText().toString())
+        firebaseAuth.fetchProvidersForEmail(et_reg_email.getText().toString())
                 .addOnCompleteListener(new OnCompleteListener<ProviderQueryResult>() {
                     @Override
                     public void onComplete(@NonNull Task<ProviderQueryResult> task) {
@@ -220,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if (view == buttonRegister){
+        if (view == bt_reg_submit){
             registerUser();
 
         }

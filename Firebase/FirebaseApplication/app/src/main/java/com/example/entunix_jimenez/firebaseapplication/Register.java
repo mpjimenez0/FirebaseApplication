@@ -65,13 +65,7 @@ public class Register extends AppCompatActivity {
         bt_reg_submit = findViewById(R.id.bt_reg_submit);
         et_reg_bdate = findViewById(R.id.date);
 
-        // spinner components declaration (referencing the String arrays from the /values/strings.xml)
-        city = getResources().getStringArray(R.array.city);
-        sp_adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item, city);
-        sp_reg_city.setAdapter(sp_adapter);
-        gender = getResources().getStringArray(R.array.gender);
-        sp_adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item, gender);
-        sp_reg_gender.setAdapter(sp_adapter);
+
 
         et_reg_bdate.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)

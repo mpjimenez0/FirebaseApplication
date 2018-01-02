@@ -22,7 +22,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
         <EditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/et_reg_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -30,7 +30,7 @@
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/et_reg_pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -38,19 +38,19 @@
             android:inputType="textPassword" />
 
         <Spinner
-            android:id="@+id/city"
+            android:id="@+id/sp_reg_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/city" />
 
         <Spinner
-            android:id="@+id/gender"
+            android:id="@+id/sp_reg_gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/gender" />
 
         <EditText
-            android:id="@+id/date"
+            android:id="@+id/et_reg_bdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
