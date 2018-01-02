@@ -176,11 +176,11 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
         //LONGPRESS
         longPressFunc(eventDuration, curPos, downPos);
         //HORIZONTAL SWIPE
-        horizSwipe(swipeDistanceX, touchDuration);
+        horizSwipeFunc(swipeDistanceX, touchDuration);
         //VERTICAL SWIPE
-        vertSwipe(swipeDistanceY, touchDuration);
+        vertSwipeFunc(swipeDistanceY, touchDuration);
         //SCROLL
-        scroll(scrollDistance, touchDuration);
+        scrollFunc(scrollDistance, touchDuration);
 
         tv_gestDetails.setText(
                 "\n\nON TOUCHEVENT"
@@ -248,7 +248,7 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
         }
     }
 
-    public void horizSwipe(float swipeDistanceX, float swipeDurationX){
+    public void horizSwipeFunc(float swipeDistanceX, float swipeDurationX){
         if(swipeDistanceX >= 150 && swipeDurationX <= 500){
             singleTap = false;
             longPress = false;
@@ -259,7 +259,7 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
         }
     }
 
-    public void vertSwipe(float swipeDistanceY, float swipeDurationY){
+    public void vertSwipeFunc(float swipeDistanceY, float swipeDurationY){
         if(swipeDistanceY >= 150 && swipeDurationY <= 500){
             singleTap = false;
             longPress = false;
@@ -270,7 +270,7 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
         }
     }
 
-    public void scroll(float scrollDistance, float scrollDuration){
+    public void scrollFunc(float scrollDistance, float scrollDuration){
         if(scrollDistance >= 50 && scrollDuration > 500){
             singleTap = false;
             longPress = false;
