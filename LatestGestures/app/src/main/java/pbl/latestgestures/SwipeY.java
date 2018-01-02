@@ -19,7 +19,7 @@ import java.util.List;
 
 import static java.lang.Math.pow;
 
-public class SwipeX extends AppCompatActivity implements
+public class SwipeY extends AppCompatActivity implements
         GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
 
     String myName;
@@ -49,7 +49,7 @@ public class SwipeX extends AppCompatActivity implements
 
     long upTime = 0;
 
-    List<SwipeX.TapData> Data = new ArrayList();
+    List<SwipeY.TapData> Data = new ArrayList();
 
 
     private static TextView textView;
@@ -62,7 +62,7 @@ public class SwipeX extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_swipe_x);
+        setContentView(R.layout.activity_swipe_y);
 
         databaseVelocity = FirebaseDatabase.getInstance().getReference();
         databaseGestureDetails = FirebaseDatabase.getInstance().getReference();
@@ -108,7 +108,7 @@ public class SwipeX extends AppCompatActivity implements
             public void onClick(View view) {
 
                 if (tapCount == 0) {
-                    Toast.makeText(SwipeX.this, "No Gesture Yet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SwipeY.this, "No Gesture Yet", Toast.LENGTH_SHORT).show();
                 } else {
                     nextCount++;
                     gestureNum = "Gesture " + nextCount;
@@ -121,8 +121,8 @@ public class SwipeX extends AppCompatActivity implements
                 if (nextCount == 5){
                     submitData.setText("Next");
                     textView.setText("Proceed to next gesture.");
-                    Intent intent = new Intent(SwipeX.this, SwipeY.class);
-                    startActivity(intent);
+          //          Intent intent = new Intent(SwipeY.this, Scroll.class);
+          //          startActivity(intent);
                 }
             }
         });
@@ -168,7 +168,7 @@ public class SwipeX extends AppCompatActivity implements
             } else {
                 singleTap = true;
                 // pagsingletap add sa data
-                SwipeX.TapData data = new SwipeX.TapData();
+                SwipeY.TapData data = new SwipeY.TapData();
                 data.prevX = (long) event.getX();
                 data.prevY = (long) event.getY();
                 data.time = upTime;
@@ -276,8 +276,8 @@ public class SwipeX extends AppCompatActivity implements
 //                        + "\nSINGLE TAP: " + singleTap
 //                        + "\nDOUBLE TAP: " + doubleTap
 //                        + "\nLONG PRESS: " + longPress
-                          + "\nSWIPE HORIZONTAL: " + swipeX
-//                        + "\nSWIPE VERTICAL: " + swipeY
+//                        + "\nSWIPE HORIZONTAL: " + swipeX
+                          + "\nSWIPE VERTICAL: " + swipeY
 //                        + "\nSCROLL: " + scroll
                         + "\nCurrent X: " + x
                         + "\nCurrent Y: " + y
@@ -307,8 +307,8 @@ public class SwipeX extends AppCompatActivity implements
         GestureDetails gestureDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName, deviceName, deviceMan);
 //        GestureDetails gestureDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName, deviceName, deviceMan);
 
-        databaseVelocity.child("Velocity").child("SwipeX").child(gestureNum).child(id).setValue(velocity);
-        databaseGestureDetails.child("Gesture Details").child("SwipeX").child(gestureNum).child(tapGestureId).setValue(gestureDetails);
+        databaseVelocity.child("Velocity").child("SwipeY").child(gestureNum).child(id).setValue(velocity);
+        databaseGestureDetails.child("Gesture Details").child("SwipeY").child(gestureNum).child(tapGestureId).setValue(gestureDetails);
 //        databaseUser.child(tapGestureId).setValue(gestureDetails);
         Toast.makeText(this, "Value Added", Toast.LENGTH_LONG).show();
     }
