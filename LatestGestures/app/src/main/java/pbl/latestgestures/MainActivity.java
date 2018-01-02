@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
 
-                if (tapCount == 0) {
+                    if (tapCount == 0) {
                     Toast.makeText(MainActivity.this, "No Gesture Yet", Toast.LENGTH_SHORT).show();
                 } else {
                     nextCount++;
@@ -174,7 +174,6 @@ public class MainActivity extends AppCompatActivity implements
                 data.time = upTime;
                 Data.add(data);
             }
-
         }
 
 
