@@ -64,6 +64,7 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
     // FIREBASE VARIABLES
     private FirebaseAuth mAuth;
     DatabaseReference gestureAttempt;
+    DatabaseReference gestStartAttempt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,9 +92,11 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
         // FIREBASE VARIABLES
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid();
+        final String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid();
         //String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/" + user.getUid() + "/details";
         gestureAttempt = FirebaseDatabase.getInstance().getReferenceFromUrl(gestureAttemptUrl);
+        gestStartAttempt = FirebaseDatabase.getInstance().getReference();
+        final String gestStartAttemptId =  gestStartAttempt.push().getKey();
 
         //WORKING
         bt_submitData = findViewById(R.id.bt_submitData);
@@ -142,8 +145,8 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
                     dispCtr++;
                     nextCount++;
                     //database code here
-                    //String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/Tap";
-                    String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/Tap" + user.getUid();
+                    String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" +  user.getUid() + "/" + gestStartAttemptId + "/Tap";
+                    //String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/Tap/" + user.getUid();
                     gestureAttempt = FirebaseDatabase.getInstance().getReferenceFromUrl(gestureAttemptUrl);
                     addDetails();
                 }else if(nextCount >= 5 && nextCount <= 10){
@@ -153,8 +156,8 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
                     bt_submitData.setText("SUBMIT");
                     //database code here
                     if(nextCount != 5) {
-                        //String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/Double Tap";
-                        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/Double Tap" + user.getUid();
+                        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/" + gestStartAttemptId + "/Double Tap";
+                        //String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/Double Tap/" + user.getUid();
                         gestureAttempt = FirebaseDatabase.getInstance().getReferenceFromUrl(gestureAttemptUrl);
                         addDetails();
                     }
@@ -167,8 +170,8 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
                     bt_submitData.setText("SUBMIT");
                     //database code here
                     if(nextCount != 11) {
-                        //String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/Long Press";
-                        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/Long Press" + user.getUid(); //sh
+                        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/" + gestStartAttemptId + "/Long Press";
+                        //String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/Long Press/" + user.getUid(); //sh
                         gestureAttempt = FirebaseDatabase.getInstance().getReferenceFromUrl(gestureAttemptUrl);
                         addDetails();
                     }
@@ -181,8 +184,8 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
                     bt_submitData.setText("SUBMIT");
                     //database code here
                     if(nextCount != 17) {
-                        //String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/Horizontal Swipe";
-                        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/Horizontal Swipe" + user.getUid(); //sh
+                        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/" + gestStartAttemptId + "/Horizontal Swipe";
+                        //String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/Horizontal Swipe/" + user.getUid(); //sh
                         gestureAttempt = FirebaseDatabase.getInstance().getReferenceFromUrl(gestureAttemptUrl);
                         addDetails();
                     }
@@ -195,8 +198,8 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
                     bt_submitData.setText("SUBMIT");
                     //database code here
                     if(nextCount != 23) {
-                        //String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/Vertical Swipe";
-                        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/Vertical Swipe" + user.getUid(); //sh
+                        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/" + gestStartAttemptId + "/Vertical Swipe";
+                        //String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/Vertical Swipe/" + user.getUid(); //sh
                         gestureAttempt = FirebaseDatabase.getInstance().getReferenceFromUrl(gestureAttemptUrl);
                         addDetails();
                     }
@@ -209,8 +212,8 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
                     bt_submitData.setText("SUBMIT");
                     //database code here
                     if(nextCount != 29) {
-                        //String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/Scroll";
-                        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/Scroll" + user.getUid(); //sh
+                        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/" + gestStartAttemptId + "/Scroll";
+                        //String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/Scroll/" + user.getUid(); //sh
                         gestureAttempt = FirebaseDatabase.getInstance().getReferenceFromUrl(gestureAttemptUrl);
                         addDetails();
                     }
