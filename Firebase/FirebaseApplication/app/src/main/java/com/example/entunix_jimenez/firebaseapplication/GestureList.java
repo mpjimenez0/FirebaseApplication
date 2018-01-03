@@ -51,6 +51,26 @@ public class GestureList extends ArrayAdapter<GestureDetails> {
         TextView tv_gesture_swX = listViewItem.findViewById(R.id.tv_gesture_swX);
         TextView tv_gesture_swY = listViewItem.findViewById(R.id.tv_gesture_swY);
 
+        GestureDetails gestureDetails = gestureList.get(position);
+
+        tv_gesture_x.setText("X Position: " + String.valueOf(gestureDetails.getxPosition()));
+        tv_gesture_y.setText("Y Position: " + String.valueOf(gestureDetails.getyPosition()));
+        tv_gesture_sX.setText("Initial X: " + String.valueOf(gestureDetails.getInitialX()));
+        tv_gesture_sY.setText("Initial Y: " + String.valueOf(gestureDetails.getInitialY()));
+        tv_gesture_fX.setText("Final X: " + String.valueOf(gestureDetails.getFinalX()));
+        tv_gesture_fY.setText("Final Y: " + String.valueOf(gestureDetails.getFinalY()));
+        tv_gesture_totalTime.setText("Total Time: " + String.valueOf(gestureDetails.getTotalTime()));
+        tv_gesture_myName.setText("My Name: " + String.valueOf(gestureDetails.getMyName()));
+        tv_gesture_devName.setText("Device Model: " + String.valueOf(gestureDetails.getDeviceName()));
+        tv_gesture_devMan.setText("Device Manufacturer: " + String.valueOf(gestureDetails.getDeviceMan()));
+        tv_gesture_sTap.setText("Single Tap: " + String.valueOf(gestureDetails.isSingleTap()));
+        tv_gesture_dTap.setText("Double Tap: " + String.valueOf(gestureDetails.isDoubleTap()));
+        tv_gesture_lPress.setText("Long Press: " + String.valueOf(gestureDetails.isLongPress()));
+        tv_gesture_scroll.setText("Scoll: " + String.valueOf(gestureDetails.isScroll()));
+        tv_gesture_fling.setText("Fling: " + String.valueOf(gestureDetails.isFling()));
+        tv_gesture_swX.setText("Horizontal Swipe: " + String.valueOf(gestureDetails.isSwipeX()));
+        tv_gesture_swY.setText("Vertical Swipe: " + String.valueOf(gestureDetails.isSwipeY()));
+
         return listViewItem;
     }
 }

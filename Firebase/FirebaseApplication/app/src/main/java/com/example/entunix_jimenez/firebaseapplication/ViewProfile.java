@@ -14,6 +14,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by mpjim on 12/18/2017.
  */
@@ -26,6 +29,8 @@ public class ViewProfile extends AppCompatActivity{
     DatabaseReference databaseGestureDetails;
     private FirebaseAuth mAuth;
 
+    List<GestureDetails> gestureDetailsList;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +39,13 @@ public class ViewProfile extends AppCompatActivity{
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
+        gestureDetailsList = new ArrayList<>();
+
         tv_profile_welcome = findViewById(R.id.tv_profile_welcome);
         tv_profile_id = findViewById(R.id.tv_profile_id);
         lv_gesture_details = findViewById(R.id.lv_gesture_details);
 
-        databaseGestureDetails = FirebaseDatabase.getInstance().getReference();
+        databaseGestureDetails = FirebaseDatabase.getInstance().getReferenceFromUrl("https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid());
 
         tv_profile_welcome.setText("Welcome, " + user.getDisplayName());
     }
@@ -50,9 +57,16 @@ public class ViewProfile extends AppCompatActivity{
         databaseGestureDetails.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                gestureDetailsList.clear();
+
                 for(DataSnapshot gestureSnapshot: dataSnapshot.getChildren()){
                     GestureDetails gestureDetails = gestureSnapshot.getValue(GestureDetails.class);
+
+                    gestureDetailsList.add(gestureDetails);
                 }
+
+                GestureList adapter = new GestureList(ViewProfile.this, gestureDetailsList);
+                lv_gesture_details.setAdapter(adapter);
             }
 
             @Override
