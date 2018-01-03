@@ -8,11 +8,13 @@
         android:id="@+id/tv_attemptID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_gesture_x"
-        android:layout_width="match_parent"
+        android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:text="TextView" />
 
@@ -111,4 +113,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
 </LinearLayout>

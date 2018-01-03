@@ -53,6 +53,7 @@ public class GestureList extends ArrayAdapter<GestureDetails> {
 
         GestureDetails gestureDetails = gestureList.get(position);
 
+        tv_attemptID.setText("Attempt Id: " + gestureDetails.getKey());
         tv_gesture_x.setText("X Position: " + String.valueOf(gestureDetails.getxPosition()));
         tv_gesture_y.setText("Y Position: " + String.valueOf(gestureDetails.getyPosition()));
         tv_gesture_sX.setText("Initial X: " + String.valueOf(gestureDetails.getInitialX()));

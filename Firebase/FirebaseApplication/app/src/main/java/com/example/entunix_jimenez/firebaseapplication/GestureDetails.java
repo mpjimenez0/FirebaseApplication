@@ -7,7 +7,7 @@ package com.example.entunix_jimenez.firebaseapplication;
 public class GestureDetails {
     public float xPosition, yPosition, initialX, initialY, finalX, finalY;
     public long totalTime;
-    public String myName, deviceName, deviceMan;
+    public String myName, deviceName, deviceMan, key;
     public boolean singleTap, doubleTap, longPress,
             scroll, fling, swipeX, swipeY;
 
@@ -22,7 +22,7 @@ public class GestureDetails {
                            String deviceName, String deviceMan,
                            boolean singleTap, boolean doubleTap,
                            boolean longPress, boolean scroll,
-                           boolean fling, boolean swipeX, boolean swipeY){
+                           boolean fling, boolean swipeX, boolean swipeY, String key){
         this.xPosition = x;
         this.yPosition = y;
         this.initialX = sX;
@@ -40,6 +40,7 @@ public class GestureDetails {
         this.fling = fling;
         this.swipeX = swipeX;
         this.swipeY = swipeY;
+        this.key = key;
     }
 
     public float getxPosition() {
@@ -149,4 +150,12 @@ public class GestureDetails {
     public boolean isSwipeY() {return swipeY;}
 
     public void setSwipeY(boolean swipeY) {this.swipeY = swipeY;}
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 }
