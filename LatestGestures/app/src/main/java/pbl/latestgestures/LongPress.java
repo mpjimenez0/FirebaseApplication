@@ -121,7 +121,8 @@ public class LongPress extends AppCompatActivity implements
                 if (nextCount == 5){
                     submitData.setText("Next");
                     textView.setText("Proceed to next gesture.");
-                    finish();
+                    Intent intent = new Intent(LongPress.this, SwipeX.class);
+                    startActivity(intent);
                 }
             }
         });

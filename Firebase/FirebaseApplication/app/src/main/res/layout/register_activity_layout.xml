@@ -39,12 +39,14 @@
         android:id="@+id/sp_reg_gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:dropDownWidth="match_parent" />
+        android:dropDownWidth="match_parent"
+        android:entries="@array/gender" />
 
     <Spinner
         android:id="@+id/sp_reg_city"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:entries="@array/city" />
 
     <EditText
         android:id="@+id/date"

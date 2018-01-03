@@ -1,9 +1,10 @@
 package pbl.latestgestures;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -16,19 +17,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.view.GestureDetector.OnDoubleTapListener;
-import static android.view.GestureDetector.OnGestureListener;
 import static java.lang.Math.pow;
 
-public class MainActivity extends AppCompatActivity implements
-        OnGestureListener,OnDoubleTapListener{
+public class SwipeX extends AppCompatActivity implements
+        GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
 
     String myName;
     String deviceName = android.os.Build.MODEL;
     String deviceMan = android.os.Build.MANUFACTURER;
     String gestureNum;
-
-    ListView listViewItem;
 
     float singleTapRadius = 25f;
     float longPressRadius = 10f;
@@ -52,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements
 
     long upTime = 0;
 
-    List<TapData> Data = new ArrayList<TapData>();
+    List<SwipeX.TapData> Data = new ArrayList();
 
 
     private static TextView textView;
@@ -65,11 +62,11 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_swipe_x);
 
         databaseVelocity = FirebaseDatabase.getInstance().getReference();
         databaseGestureDetails = FirebaseDatabase.getInstance().getReference();
-        ListView listViewItem = (ListView) findViewById(R.id.listViewItem);
+
         myName = "usertrial";
         x = 0;
         y = 0;
@@ -87,13 +84,11 @@ public class MainActivity extends AppCompatActivity implements
         swipeX = false;
         swipeY = false;
 
-        //listVIew
-
-
         submitData = (Button)findViewById(R.id.submitData);
         textView = (TextView)findViewById(R.id.textView);
         GestureDetect = new GestureDetectorCompat(this,this);
         GestureDetect.setOnDoubleTapListener(this);
+
 //        submitData.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -106,13 +101,14 @@ public class MainActivity extends AppCompatActivity implements
 //                }
 //            }
 //        });
+
         textView.setText("Input Gesture# 1");
         submitData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                    if (tapCount == 0) {
-                    Toast.makeText(MainActivity.this, "No Gesture Yet", Toast.LENGTH_SHORT).show();
+                if (tapCount == 0) {
+                    Toast.makeText(SwipeX.this, "No Gesture Yet", Toast.LENGTH_SHORT).show();
                 } else {
                     nextCount++;
                     gestureNum = "Gesture " + nextCount;
@@ -125,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements
                 if (nextCount == 5){
                     submitData.setText("Next");
                     textView.setText("Proceed to next gesture.");
-                    Intent intent = new Intent(MainActivity.this, ListView.class);
+                    Intent intent = new Intent(SwipeX.this, SwipeY.class);
                     startActivity(intent);
                 }
             }
@@ -172,12 +168,13 @@ public class MainActivity extends AppCompatActivity implements
             } else {
                 singleTap = true;
                 // pagsingletap add sa data
-                TapData data = new TapData();
+                SwipeX.TapData data = new SwipeX.TapData();
                 data.prevX = (long) event.getX();
                 data.prevY = (long) event.getY();
                 data.time = upTime;
                 Data.add(data);
             }
+
         }
 
 
@@ -276,10 +273,10 @@ public class MainActivity extends AppCompatActivity implements
 
         textView.setText(
                 "\n\nON TOUCHEVENT"
-                        + "\nSINGLE TAP: " + singleTap
+//                        + "\nSINGLE TAP: " + singleTap
 //                        + "\nDOUBLE TAP: " + doubleTap
 //                        + "\nLONG PRESS: " + longPress
-//                        + "\nSWIPE HORIZONTAL: " + swipeX
+                          + "\nSWIPE HORIZONTAL: " + swipeX
 //                        + "\nSWIPE VERTICAL: " + swipeY
 //                        + "\nSCROLL: " + scroll
                         + "\nCurrent X: " + x
@@ -307,12 +304,11 @@ public class MainActivity extends AppCompatActivity implements
 //        String tapGestureId =  databaseUser.push().getKey();    //user.getUid();
 
         Velocity velocity = new Velocity(id, singleTap, doubleTap, longPress, swipeX, swipeY, scroll);
-
         GestureDetails gestureDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName, deviceName, deviceMan);
 //        GestureDetails gestureDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName, deviceName, deviceMan);
 
-        databaseVelocity.child("Velocity").child("SingleTap").child(gestureNum).child(id).setValue(velocity);
-        databaseGestureDetails.child("Gesture Details").child("SingleTap").child(gestureNum).child(tapGestureId).setValue(gestureDetails);
+        databaseVelocity.child("Velocity").child("SwipeX").child(gestureNum).child(id).setValue(velocity);
+        databaseGestureDetails.child("Gesture Details").child("SwipeX").child(gestureNum).child(tapGestureId).setValue(gestureDetails);
 //        databaseUser.child(tapGestureId).setValue(gestureDetails);
         Toast.makeText(this, "Value Added", Toast.LENGTH_LONG).show();
     }
@@ -416,14 +412,6 @@ public class MainActivity extends AppCompatActivity implements
         return false;
     }
 
-    public float getX() {
-        return x;
-    }
-
-    public float getY() {
-        return y;
-    }
-
     private class TapData {
         public float prevX;
         public float prevY;
@@ -432,3 +420,4 @@ public class MainActivity extends AppCompatActivity implements
 
 
 }
+

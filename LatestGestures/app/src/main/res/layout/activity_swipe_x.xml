@@ -10,7 +10,7 @@
         android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Long Press"
+        android:text="SwipeX"
         android:textSize="25dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:orientation="vertical"
@@ -25,14 +25,13 @@
         android:text="Input Gesture"
         android:layout_centerInParent="true"
         android:layout_below="@+id/text1"/>
-
     <Button
-        android:id="@+id/submitData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textView"
+        android:id="@+id/submitData"
+        android:text="Submit"
+        android:layout_centerInParent="true"
         android:orientation="vertical"
-        android:text="Submit" />
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
