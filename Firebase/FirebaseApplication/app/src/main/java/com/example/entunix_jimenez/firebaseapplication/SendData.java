@@ -17,6 +17,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.lang.Math.pow;
 
 /**
@@ -29,26 +32,33 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
     String myName;
     String deviceName = android.os.Build.MODEL;
     String deviceMan = android.os.Build.MANUFACTURER;
+    String gestureNum;
+
+    int nextCount = 0;
 
     // GESTURE DETAILS VARIABLES
-    float radius = 25f;
+    float singleTapRadius = 25f;
+    float longPressRadius = 10f;
     float x, y, sX, sY, fX, fY;
     int tapCount = 0;
     long upTime = 0;
     long totalTime;
     float prevX = 0;
     float prevY = 0;
+    List<TapData> Data = new ArrayList<TapData>();
 
     // GESTURE RECOGNITION VARIABLES
     boolean singleTap;
     boolean doubleTap;
     boolean longPress;
-    boolean swipe;
     boolean scroll;
+    boolean fling;
+    boolean swipeX;
+    boolean swipeY;
 
     // LAYOUT VARIABLES
     Button bt_submitData;
-    TextView tv_gestDetails, tv_gestGreeting;
+    TextView tv_gestDetails, tv_gestGreeting, tv_gesture, tv_gest_counter;
 
     // FIREBASE VARIABLES
     private FirebaseAuth mAuth;
@@ -73,17 +83,22 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
         doubleTap = false;
         longPress = false;
         scroll = false;
-        swipe = false;
+        fling = false;
+        swipeX = false;
+        swipeY = false;
 
         // FIREBASE VARIABLES
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/" + user.getUid() + "/details";
         gestureAttempt = FirebaseDatabase.getInstance().getReferenceFromUrl(gestureAttemptUrl);
-        //working
+
+        //WORKING
         bt_submitData = findViewById(R.id.bt_submitData);
         tv_gestDetails = findViewById(R.id.tv_gestDetails);
         tv_gestGreeting = findViewById(R.id.tv_gestGreeting);
+        tv_gesture = findViewById(R.id.tv_gesture);
+        tv_gest_counter = findViewById(R.id.tv_gest_counter);
 
         if(mAuth.getCurrentUser() == null){
             finish();
@@ -101,13 +116,29 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
         bt_submitData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                addDetails();
+                if(tapCount == 0){
+                    Toast.makeText(SendData.this, "No Gesture Yet", Toast.LENGTH_SHORT).show();
+                }else{
+                    nextCount++;
+                    gestureNum = "Gesture" + nextCount;
+                    addDetails();
+                    int countHolder = nextCount+1;
+                    tv_gest_counter.setText("Input Gesture# " + countHolder);
+                    tapCount = 0;
+                }
+
+                if(nextCount == 5){
+                    bt_submitData.setText("Next");
+                    tv_gesture.setText("Proceed to next gesture");
+                    finish();
+                }
             }
         });
     }
 
     private void addDetails(){
-        GestureDetails gestDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName, deviceName, deviceMan);
+        GestureDetails gestDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName,
+                deviceName, deviceMan, singleTap, doubleTap, longPress, scroll, fling, swipeX, swipeY);
         String tapGestureId =  gestureAttempt.push().getKey();
         gestureAttempt.child(tapGestureId).setValue(gestDetails);
         Toast.makeText(this, "Value Added", Toast.LENGTH_LONG).show();
@@ -116,12 +147,21 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         GestureDetect.onTouchEvent(event);
+
         tv_gestDetails = findViewById(R.id.tv_gestDetails);
+
         totalTime = event.getDownTime() - upTime;
         x = event.getX();
         y = event.getY();
+
         float touchDuration = upTime - event.getDownTime();
         long eventDuration = event.getEventTime() - event.getDownTime();
+        float tapPos = (float) Math.sqrt(pow(prevX - event.getX(), 2) + pow(prevY - event.getY(), 2));
+        float swipeDistanceX = Math.abs(fX - sX);
+        float swipeDistanceY = Math.abs(fY - sY);
+        float scrollDistance = Math.abs(fY - sY);
+        float downPos = (float) Math.sqrt(pow(sX, 2) + pow(sY, 2));
+        float curPos = (float) Math.sqrt(pow(x, 2) + pow(y, 2));
 
         if (tapCount >= 2){
             tapCount = 0;
@@ -137,46 +177,30 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
                 fY = event.getY();
                 upTime = event.getEventTime();
                 tapCount++;
-                if (tapCount == 1) {
-                    prevX = event.getX();
-                    prevY = event.getY();
-                }
                 break;
         }
 
         //SINGLE TAP
-        singleTapFunc(touchDuration);
-
+        singleTapFunc(touchDuration, curPos, downPos, x, y, upTime);
         //DOUBLE TAP
-        float tapPos = (float) Math.sqrt(pow(prevX - event.getX(), 2) + pow(prevY - event.getY(), 2));
-        doubleTapFunc(tapPos);
-
+        doubleTapFunc();
         //LONGPRESS
-        float longPressTime = (event.getEventTime() - event.getDownTime());
-        longPressFunc(longPressTime);
-
-        //SWIPE
-        float swipeDistanceX = Math.abs(fX - sX);
-        float swipeDistanceY = Math.abs(fY - sY);
-
-        if( swipeDistanceX >= 200) {
-            if (swipeDistanceY >= 200) {
-                if (eventDuration > 100) {
-                    singleTap = false;
-                    doubleTap = false;
-                    longPress = false;
-                    scroll = false;
-                    swipe = true;
-                }
-            }
-        }
+        longPressFunc(eventDuration, curPos, downPos);
+        //HORIZONTAL SWIPE
+        horizSwipeFunc(swipeDistanceX, touchDuration);
+        //VERTICAL SWIPE
+        vertSwipeFunc(swipeDistanceY, touchDuration);
+        //SCROLL
+        scrollFunc(scrollDistance, touchDuration);
 
         tv_gestDetails.setText(
                 "\n\nON TOUCHEVENT"
                         + "\nSINGLE TAP: " + singleTap
                         + "\nDOUBLE TAP: " + doubleTap
                         + "\nLONG PRESS: " + longPress
-                        + "\nSWIPE: " + swipe
+                        + "\nSCROLL: " + scroll
+                        + "\nHORIZONTAL SWIPE: " + swipeX
+                        + "\nVERTICAL SWIPE: " + swipeY
                         + "\nCount: " + tapCount
                         + "\nCurrent X: " + x
                         + "\nCurrent Y: " + y
@@ -195,39 +219,93 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
         return super.onTouchEvent(event);
     }
 
-    public void singleTapFunc(float touchDuration) {
+    public void singleTapFunc(float touchDuration, float curPos, float downPos, float x, float y, long upTime) {
         if (touchDuration < 500) {
             singleTap = true;
             longPress = false;
             doubleTap = false;
-            swipe = false;
-        }
-    }
-
-    public void doubleTapFunc(float tapPos) {
-        if (tapCount == 2) {
-            if (tapPos <= radius) {
+            scroll = false;
+            swipeX = false;
+            swipeY = false;
+            if(Math.abs(curPos - downPos) > singleTapRadius){
                 singleTap = false;
-                longPress = false;
-                doubleTap = true;
-                swipe = false;
+            }else{
+                singleTap = true;
+                SendData.TapData data = new SendData.TapData();
+                data.prevX = x;
+                data.prevY = y;
+                data.time = upTime;
+                Data.add(data);
             }
         }
     }
 
-    public void longPressFunc(float longPressTime) {
+    public void doubleTapFunc() {
+        if(Data.size() > 1){
+            singleTap = false;
+            longPress = false;
+            doubleTap = true;
+            scroll = false;
+            swipeX = false;
+            swipeY = false;
+            if(Math.abs(Data.get(Data.size() - 1).prevX - Data.get(Data.size() - 2).prevX) > singleTapRadius){
+                doubleTap = false;
+            }
+            if (Math.abs(Data.get(Data.size() - 1).prevY - Data.get(Data.size() - 2).prevY) > singleTapRadius) {
+                doubleTap = false;
+            }
+            if (Math.abs(Data.get(Data.size() - 1).time - Data.get(Data.size() - 2).time) > 200) {
+                doubleTap = false;
+            }
+        }
+    }
+
+    public void longPressFunc(float longPressTime, float curPos, float downPos) {
         if (longPressTime >= 500) {
+            tapCount = 0;
             singleTap = false;
             doubleTap = false;
-            swipe = false;
-            tapCount = 0;
-            float downPos = (float) Math.sqrt(pow(sX, 2) + pow(sY, 2));
-            float curPos = (float) Math.sqrt(pow(x, 2) + pow(y, 2));
-            if (Math.abs(curPos - downPos) > radius) {
+            scroll = false;
+            swipeX = false;
+            swipeY = false;
+            if (Math.abs(curPos - downPos) > longPressRadius) {
                 longPress = false;
             }else{
                 longPress = true;
             }
+        }
+    }
+
+    public void horizSwipeFunc(float swipeDistanceX, float swipeDurationX){
+        if(swipeDistanceX >= 150 && swipeDurationX <= 500){
+            singleTap = false;
+            longPress = false;
+            doubleTap = false;
+            scroll = false;
+            swipeX = true;
+            swipeY = false;
+        }
+    }
+
+    public void vertSwipeFunc(float swipeDistanceY, float swipeDurationY){
+        if(swipeDistanceY >= 150 && swipeDurationY <= 500){
+            singleTap = false;
+            longPress = false;
+            doubleTap = false;
+            scroll = false;
+            swipeX = false;
+            swipeY = true;
+        }
+    }
+
+    public void scrollFunc(float scrollDistance, float scrollDuration){
+        if(scrollDistance >= 50 && scrollDuration > 500){
+            singleTap = false;
+            longPress = false;
+            doubleTap = false;
+            scroll = false;
+            swipeX = false;
+            swipeY = true;
         }
     }
 
@@ -274,5 +352,11 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
         return false;
+    }
+
+    private class TapData {
+        public float prevX;
+        public float prevY;
+        public long time;
     }
 }
