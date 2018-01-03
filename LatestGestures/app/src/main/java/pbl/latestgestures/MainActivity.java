@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements
     String deviceMan = android.os.Build.MANUFACTURER;
     String gestureNum;
 
+    ListView listViewItem;
+
     float singleTapRadius = 25f;
     float longPressRadius = 10f;
     float doubleTapRadius = 200;
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements
 
         databaseVelocity = FirebaseDatabase.getInstance().getReference();
         databaseGestureDetails = FirebaseDatabase.getInstance().getReference();
-
+        ListView listViewItem = (ListView) findViewById(R.id.listViewItem);
         myName = "usertrial";
         x = 0;
         y = 0;
@@ -85,11 +87,13 @@ public class MainActivity extends AppCompatActivity implements
         swipeX = false;
         swipeY = false;
 
+        //listVIew
+
+
         submitData = (Button)findViewById(R.id.submitData);
         textView = (TextView)findViewById(R.id.textView);
         GestureDetect = new GestureDetectorCompat(this,this);
         GestureDetect.setOnDoubleTapListener(this);
-
 //        submitData.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -121,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements
                 if (nextCount == 5){
                     submitData.setText("Next");
                     textView.setText("Proceed to next gesture.");
-                    Intent intent = new Intent(MainActivity.this, DoubleTap.class);
+                    Intent intent = new Intent(MainActivity.this, ListView.class);
                     startActivity(intent);
                 }
             }
@@ -410,6 +414,14 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
         return false;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
     }
 
     private class TapData {
