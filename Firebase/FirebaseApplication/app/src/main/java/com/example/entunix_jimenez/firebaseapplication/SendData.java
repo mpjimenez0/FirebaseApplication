@@ -90,7 +90,7 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
         // FIREBASE VARIABLES
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/" + user.getUid() + "/details";
+        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid();
         //String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/" + user.getUid() + "/details";
         gestureAttempt = FirebaseDatabase.getInstance().getReferenceFromUrl(gestureAttemptUrl);
 
@@ -108,7 +108,7 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
 
         if(user != null){
             tv_gestGreeting.setText("Welcome, " + user.getDisplayName() + "\n User Id: " + user.getUid());
-            myName = user.getDisplayName().toString();
+            //myName = user.getDisplayName().toString();
         }
 
         GestureDetect = new GestureDetectorCompat(this, this);
