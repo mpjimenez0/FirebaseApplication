@@ -45,7 +45,7 @@ public class ViewProfile extends AppCompatActivity{
         tv_profile_id = findViewById(R.id.tv_profile_id);
         lv_gesture_details = findViewById(R.id.lv_gesture_details);
 
-        databaseGestureDetails = FirebaseDatabase.getInstance().getReferenceFromUrl("https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid());
+        databaseGestureDetails = FirebaseDatabase.getInstance().getReferenceFromUrl("https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/");
 
         tv_profile_welcome.setText("Welcome, " + user.getDisplayName());
     }
@@ -55,16 +55,36 @@ public class ViewProfile extends AppCompatActivity{
         super.onStart();
 
         databaseGestureDetails.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 gestureDetailsList.clear();
-
+                mAuth = FirebaseAuth.getInstance();
+                FirebaseUser user = mAuth.getCurrentUser();
                 for(DataSnapshot gestureSnapshot: dataSnapshot.getChildren()){
-                    GestureDetails gestureDetails = gestureSnapshot.getValue(GestureDetails.class);
+                    String x = gestureSnapshot.getKey();
+                    System.out.println(x);
+                    databaseGestureDetails = FirebaseDatabase.getInstance().getReferenceFromUrl("https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/" + x + "/Tap");
+                    databaseGestureDetails.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for(DataSnapshot gestureSnapshot: dataSnapshot.getChildren()){
+                                String x = gestureSnapshot.getKey();
+                                System.out.println("x: " + x);
+                                GestureDetails gestureDetails = gestureSnapshot.getValue(GestureDetails.class);
 
-                    gestureDetailsList.add(gestureDetails);
+                                gestureDetailsList.add(gestureDetails);
+                            }
+                            GestureList adapter = new GestureList(ViewProfile.this, gestureDetailsList);
+                            lv_gesture_details.setAdapter(adapter);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
                 }
-
                 GestureList adapter = new GestureList(ViewProfile.this, gestureDetailsList);
                 lv_gesture_details.setAdapter(adapter);
             }
