@@ -48,8 +48,6 @@ public class Register extends AppCompatActivity {
     EditText et_reg_bdate;
     DatePickerDialog.OnDateSetListener mDateSetListener;
 
-
-
     public FirebaseAuth mAuth;
 
     @Override
@@ -66,8 +64,9 @@ public class Register extends AppCompatActivity {
         sp_reg_gender = findViewById(R.id.sp_reg_gender);
         bt_reg_submit = findViewById(R.id.bt_reg_submit);
         et_reg_bdate = findViewById(R.id.date);
-        databaseInfo = FirebaseDatabase.getInstance().getReference("info");
 
+        String infoUrl = "https://fir-application-8e6b4.firebaseio.com/Users/";
+        databaseInfo = FirebaseDatabase.getInstance().getReferenceFromUrl(infoUrl);
 
         //date
         et_reg_bdate.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +83,6 @@ public class Register extends AppCompatActivity {
                         mDateSetListener, year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
-
             }
         });
 
@@ -97,21 +95,12 @@ public class Register extends AppCompatActivity {
             }
         };
 
-        mAuth = FirebaseAuth.getInstance();
-
-        if (mAuth.getCurrentUser() != null){
-            finish();
-            startActivity(new Intent(getApplicationContext(), MainMenu.class));
-        }
-
         bt_reg_submit.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 registerUser();
             }
         });
         //end of date
-
-
     }
 
     private void registerUser(){
@@ -129,11 +118,9 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<ProviderQueryResult> task) {
                         boolean check = !task.getResult().getProviders().isEmpty();
-
                         if (check){
-                            Toast.makeText(getApplicationContext(), "Email already exist",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Email already exists",Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 });
 
@@ -180,8 +167,17 @@ public class Register extends AppCompatActivity {
 
             String getemail = et_reg_email.getText().toString().trim();
             String getpassword = et_reg_pass.getText().toString().trim();
+            addDetails(reg_name, reg_email, reg_gender, reg_city, reg_bdate);
             callsignup(getemail, getpassword);
+            finish();
+            startActivity(new Intent(getApplicationContext(), MainMenu.class));
         }
+    }
+
+    private void addDetails(String reg_name, String reg_email, String reg_gender, String reg_city, String reg_bDate){
+        UserInfo info = new UserInfo(reg_name, reg_email, reg_gender, reg_city, reg_bDate);
+        String infoId = databaseInfo.push().getKey();
+        databaseInfo.child(infoId).setValue(info);
     }
 
     private void callsignup(String email, String password) {
@@ -195,7 +191,6 @@ public class Register extends AppCompatActivity {
                     userProfile();
                     Toast.makeText(Register.this, "Created Account", Toast.LENGTH_SHORT).show();
                     Log.d("TESTING", "User profile updated.");
-                    startActivity(new Intent(getApplicationContext(), MainMenu.class));
                 }
             }
         });
@@ -203,16 +198,7 @@ public class Register extends AppCompatActivity {
 
     private void userProfile() {
         FirebaseUser user =  mAuth.getCurrentUser();
-        if(user != null) {
-            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(et_reg_name.getText().toString().trim()).build();
-            user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>(){
-                @Override
-                public void onComplete(@NonNull Task<Void> task){
-                    if(task.isSuccessful()){
-                        Log.d("TESTING", "User Profile Updated!" + task.isSuccessful());
-                    }
-                }
-            });
-        }
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(et_reg_name.getText().toString().trim()).build();
+        user.updateProfile(profileUpdates);
     }
 }

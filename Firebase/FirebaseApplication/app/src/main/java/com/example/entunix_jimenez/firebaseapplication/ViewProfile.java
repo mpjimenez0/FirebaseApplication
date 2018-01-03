@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,17 +24,23 @@ public class ViewProfile extends AppCompatActivity{
     ListView lv_gesture_details;
 
     DatabaseReference databaseGestureDetails;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_profile_layout);
 
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+
         tv_profile_welcome = findViewById(R.id.tv_profile_welcome);
         tv_profile_id = findViewById(R.id.tv_profile_id);
         lv_gesture_details = findViewById(R.id.lv_gesture_details);
 
         databaseGestureDetails = FirebaseDatabase.getInstance().getReference();
+
+        tv_profile_welcome.setText("Welcome, " + user.getDisplayName());
     }
 
     @Override
