@@ -19,7 +19,7 @@ import java.util.List;
 
 import static java.lang.Math.pow;
 
-public class LongPress extends AppCompatActivity implements
+public class Scroll extends AppCompatActivity implements
         GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
 
     String myName;
@@ -49,7 +49,7 @@ public class LongPress extends AppCompatActivity implements
 
     long upTime = 0;
 
-    List<LongPress.TapData> Data = new ArrayList();
+    List<Scroll.TapData> Data = new ArrayList();
 
 
     private static TextView textView;
@@ -62,7 +62,7 @@ public class LongPress extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_long_press);
+        setContentView(R.layout.activity_scroll);
 
         databaseVelocity = FirebaseDatabase.getInstance().getReference();
         databaseGestureDetails = FirebaseDatabase.getInstance().getReference();
@@ -108,7 +108,7 @@ public class LongPress extends AppCompatActivity implements
             public void onClick(View view) {
 
                 if (tapCount == 0) {
-                    Toast.makeText(LongPress.this, "No Gesture Yet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Scroll.this, "No Gesture Yet", Toast.LENGTH_SHORT).show();
                 } else {
                     nextCount++;
                     gestureNum = "Gesture " + nextCount;
@@ -121,8 +121,6 @@ public class LongPress extends AppCompatActivity implements
                 if (nextCount == 5){
                     submitData.setText("Next");
                     textView.setText("Proceed to next gesture.");
-                    Intent intent = new Intent(LongPress.this, SwipeX.class);
-                    startActivity(intent);
                 }
             }
         });
@@ -168,7 +166,7 @@ public class LongPress extends AppCompatActivity implements
             } else {
                 singleTap = true;
                 // pagsingletap add sa data
-                LongPress.TapData data = new LongPress.TapData();
+                Scroll.TapData data = new Scroll.TapData();
                 data.prevX = (long) event.getX();
                 data.prevY = (long) event.getY();
                 data.time = upTime;
@@ -275,10 +273,10 @@ public class LongPress extends AppCompatActivity implements
                 "\n\nON TOUCHEVENT"
 //                        + "\nSINGLE TAP: " + singleTap
 //                        + "\nDOUBLE TAP: " + doubleTap
-                          + "\nLONG PRESS: " + longPress
+//                        + "\nLONG PRESS: " + longPress
 //                        + "\nSWIPE HORIZONTAL: " + swipeX
 //                        + "\nSWIPE VERTICAL: " + swipeY
-//                        + "\nSCROLL: " + scroll
+                          + "\nSCROLL: " + scroll
                         + "\nCurrent X: " + x
                         + "\nCurrent Y: " + y
                         + "\nDown X: " + sX
@@ -307,8 +305,8 @@ public class LongPress extends AppCompatActivity implements
         GestureDetails gestureDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName, deviceName, deviceMan);
 //        GestureDetails gestureDetails = new GestureDetails(x, y, sX, sY, fX, fY, totalTime, myName, deviceName, deviceMan);
 
-        databaseVelocity.child("Velocity").child("LongPress").child(gestureNum).child(id).setValue(velocity);
-        databaseGestureDetails.child("Gesture Details").child("LongPress").child(gestureNum).child(tapGestureId).setValue(gestureDetails);
+        databaseVelocity.child("Velocity").child("Scroll").child(gestureNum).child(id).setValue(velocity);
+        databaseGestureDetails.child("Gesture Details").child("Scroll").child(gestureNum).child(tapGestureId).setValue(gestureDetails);
 //        databaseUser.child(tapGestureId).setValue(gestureDetails);
         Toast.makeText(this, "Value Added", Toast.LENGTH_LONG).show();
     }

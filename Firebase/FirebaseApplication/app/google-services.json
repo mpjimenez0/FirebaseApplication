@@ -59,6 +59,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "206371973413-h13v0lcb1quhr11dko00n4jrcod9peoi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.entunix_jimenez.firebaseapplication",
+            "certificate_hash": "fcc41a2c7617354cb280c41d6dc07a02e354bb0d"
+          }
+        },
+        {
           "client_id": "206371973413-j76vpm88lg77lsql7ida45bnfgl9mnbr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

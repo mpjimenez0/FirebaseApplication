@@ -33,7 +33,7 @@ public class Authentication extends AppCompatActivity {
 
         tv_signup = findViewById(R.id.tv_signup);
         bt_signin = findViewById(R.id.bt_signin);
-        et_name = findViewById(R.id.et_name);
+
         et_email = findViewById(R.id.et_email);
         et_pass = findViewById(R.id.et_pass);
 
