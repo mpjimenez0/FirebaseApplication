@@ -122,14 +122,15 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
         bt_submitData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
+                FirebaseUser user = mAuth.getCurrentUser();
                 if(tapCount == 0){
                     Toast.makeText(SendData.this, "No Gesture Yet", Toast.LENGTH_SHORT).show();
                 }else{
-                    nextCount++;
-                    gestureNum = "Gesture" + nextCount;
-                    int countHolder = nextCount+1;
+                    //nextCount++;
+                    //gestureNum = "Gesture" + nextCount;
+                    //int countHolder = nextCount+1;
                     //tv_gest_counter.setText("Input Gesture# " + countHolder);
-                    tapCount = 0;
+                    //tapCount = 0;
                     //addDetails();
                 }
 
@@ -140,12 +141,21 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
                     bt_submitData.setText("SUBMIT");
                     dispCtr++;
                     nextCount++;
-
+                    //database code here
+                    String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/Tap";
+                    gestureAttempt = FirebaseDatabase.getInstance().getReferenceFromUrl(gestureAttemptUrl);
+                    addDetails();
                 }else if(nextCount >= 5 && nextCount <= 10){
                     //double tap
                     tv_gesture.setText("DOUBLE TAP");
                     tv_gest_counter.setText("Input Gesture# " + dispCtr);
                     bt_submitData.setText("SUBMIT");
+                    //database code here
+                    if(nextCount != 5) {
+                        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/Double Tap";
+                        gestureAttempt = FirebaseDatabase.getInstance().getReferenceFromUrl(gestureAttemptUrl);
+                        addDetails();
+                    }
                     dispCtr++;
                     nextCount++;
                 }else if(nextCount >= 11 && nextCount <= 16){
@@ -153,33 +163,53 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
                     tv_gesture.setText("LONG PRESS");
                     tv_gest_counter.setText("Input Gesture# " + dispCtr);
                     bt_submitData.setText("SUBMIT");
+                    //database code here
+                    if(nextCount != 11) {
+                        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/Long Press";
+                        gestureAttempt = FirebaseDatabase.getInstance().getReferenceFromUrl(gestureAttemptUrl);
+                        addDetails();
+                    }
                     dispCtr++;
                     nextCount++;
-
                 }else if(nextCount >= 17 && nextCount <= 22){
                     //horizontal swipe
                     tv_gesture.setText("HORIZONTAL SWIPE");
                     tv_gest_counter.setText("Input Gesture# " + dispCtr);
                     bt_submitData.setText("SUBMIT");
+                    //database code here
+                    if(nextCount != 17) {
+                        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/Horizontal Swipe";
+                        gestureAttempt = FirebaseDatabase.getInstance().getReferenceFromUrl(gestureAttemptUrl);
+                        addDetails();
+                    }
                     dispCtr++;
                     nextCount++;
-
                 }else if(nextCount >= 23 && nextCount <= 28){
                     //vertical swipe
                     tv_gesture.setText("VERTICAL SWIPE");
                     tv_gest_counter.setText("Input Gesture# " + dispCtr);
                     bt_submitData.setText("SUBMIT");
+                    //database code here
+                    if(nextCount != 23) {
+                        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/Vertical Swipe";
+                        gestureAttempt = FirebaseDatabase.getInstance().getReferenceFromUrl(gestureAttemptUrl);
+                        addDetails();
+                    }
                     dispCtr++;
                     nextCount++;
-
                 }else if(nextCount >= 29 && nextCount <= 34){
                     //scroll
                     tv_gesture.setText("SCROLL");
                     tv_gest_counter.setText("Input Gesture# " + dispCtr);
                     bt_submitData.setText("SUBMIT");
+                    //database code here
+                    if(nextCount != 29) {
+                        String gestureAttemptUrl = "https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/Scroll";
+                        gestureAttempt = FirebaseDatabase.getInstance().getReferenceFromUrl(gestureAttemptUrl);
+                        addDetails();
+                    }
                     dispCtr++;
                     nextCount++;
-
                 }else{
                     tv_gesture.setText("EXIT");
                     dispCtr = 1;
