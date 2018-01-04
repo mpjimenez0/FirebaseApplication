@@ -38,7 +38,8 @@ public class Authentication extends AppCompatActivity {
 
         if (mAuth.getCurrentUser() != null) {
             finish();
-            startActivity(new Intent(getApplicationContext(), MainMenu.class));
+            Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+            startActivity(intent);
         }
 
         bt_signin.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +61,7 @@ public class Authentication extends AppCompatActivity {
     }
 
 
-    private void callsignin(String email, String password){
+    private void callsignin(final String email, String password){
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -76,6 +77,7 @@ public class Authentication extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                         }else{
                             Intent i = new Intent(Authentication.this, MainMenu.class);
+                            i.putExtra("reg_email", email);
                             startActivity(i);
                         }
                     }

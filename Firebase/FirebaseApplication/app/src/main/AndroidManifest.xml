@@ -16,10 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainMenu"></activity>
-        <activity android:name=".SendData"></activity>
-        <activity android:name=".ViewProfile"></activity>
-        <activity android:name=".Register"></activity>
+        <activity android:name=".MainMenu" />
+        <activity android:name=".SendData" />
+        <activity android:name=".SingleTapProfile" />
+        <activity android:name=".Register" />
+        <activity android:name=".ViewProfile" />
+        <activity android:name=".LongPressProfile" />
+        <activity android:name=".HorizontalSwipeProfile" />
+        <activity android:name=".VerticalSwipeProfile" />
+        <activity android:name=".ScrollProfile"></activity>
     </application>
 
 </manifest>
