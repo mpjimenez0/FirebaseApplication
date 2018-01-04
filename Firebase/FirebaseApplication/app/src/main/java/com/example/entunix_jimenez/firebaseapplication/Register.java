@@ -56,7 +56,6 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.register_activity_layout);
         mAuth = FirebaseAuth.getInstance();
 
-
         // layout components declaration (connecting the xml file and the class)
         et_reg_name = findViewById(R.id.et_reg_name);
         et_reg_email = findViewById(R.id.et_reg_email);
@@ -139,7 +138,7 @@ public class Register extends AppCompatActivity {
         }
         else
         if (TextUtils.isEmpty(reg_pass)){
-            Toast.makeText(this,"Enter Password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Enter password", Toast.LENGTH_SHORT).show();
             return;
         }else
 
@@ -149,11 +148,11 @@ public class Register extends AppCompatActivity {
         }
         //Empty gender
         if (TextUtils.isEmpty(reg_gender)){
-            Toast.makeText(this,"Enter Gender", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Enter gender", Toast.LENGTH_SHORT).show();
             return;
         }else
         if (TextUtils.isEmpty(reg_city)){
-            Toast.makeText(this,"Enter City", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Enter city", Toast.LENGTH_SHORT).show();
             return;
         }else
         if (TextUtils.isEmpty(reg_bdate)){
@@ -171,12 +170,7 @@ public class Register extends AppCompatActivity {
             addDetails(reg_name, reg_email, reg_gender, reg_city, reg_bdate);
             callsignup(getemail, getpassword);
             finish();
-
-      //      Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-
-        //    intent.putExtra("reg_name", et_reg_name.getText().toString().trim());
-          //  startActivity(intent);
-
+            startActivity(new Intent(getApplicationContext(), MainMenu.class));
         }
     }
 
