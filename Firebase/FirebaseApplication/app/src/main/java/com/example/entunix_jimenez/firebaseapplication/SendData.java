@@ -379,7 +379,6 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
 
     public void doubleTapFunc() {
         if(Data.size() > 1){
-            singleTap = false;
             longPress = false;
             doubleTap = true;
             scroll = false;
@@ -436,13 +435,13 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
     }
 
     public void scrollFunc(float scrollDistance, float scrollDuration){
-        if(scrollDistance >= 50 && scrollDuration > 500){
+        if(scrollDistance >= 150 && scrollDuration > 500){
             singleTap = false;
             longPress = false;
             doubleTap = false;
-            scroll = false;
+            scroll = true;
             swipeX = false;
-            swipeY = true;
+            swipeY = false;
         }
     }
 

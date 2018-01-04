@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,6 +25,9 @@ public class MainMenu extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu_layout);
 
+        Intent intent = getIntent();
+        String reg_email = intent.getStringExtra("reg_email");
+
         bt_gestureStart = findViewById(R.id.bt_gestureStart);
         bt_profileView = findViewById(R.id.bt_profileView);
         bt_signOut = findViewById(R.id.bt_signOut);
@@ -31,8 +35,14 @@ public class MainMenu extends AppCompatActivity{
         mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser user = mAuth.getCurrentUser();
+
         if(user != null) {
-            tv_greeting.setText("Welcome, " + user.getDisplayName());
+            tv_greeting.setText("Welcome, " + reg_email);
+        }else if(user == null){
+            finish();
+            startActivity(new Intent(getApplicationContext(), Authentication.class));
+            Toast.makeText(MainMenu.this, "Sign in Failed",
+                    Toast.LENGTH_SHORT).show();
         }
 
         bt_gestureStart.setOnClickListener(new View.OnClickListener(){

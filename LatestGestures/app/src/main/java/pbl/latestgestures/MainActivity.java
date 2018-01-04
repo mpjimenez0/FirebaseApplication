@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements
 
         databaseVelocity = FirebaseDatabase.getInstance().getReference();
         databaseGestureDetails = FirebaseDatabase.getInstance().getReference();
-        ListView listViewItem = (ListView) findViewById(R.id.listViewItem);
         myName = "usertrial";
         x = 0;
         y = 0;

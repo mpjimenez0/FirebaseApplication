@@ -1,62 +1,29 @@
 package com.example.entunix_jimenez.firebaseapplication;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+public class ViewProfile extends AppCompatActivity {
+    Button SingleTap, DoubleTap, LongPress, HorizontalSwipe, VerticalSwipe, Scroll;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * Created by mpjim on 12/18/2017.
- */
-
-
-public class ViewProfile extends AppCompatActivity{
-    TextView tv_profile_welcome, tv_profile_id;
-    ListView lv_gesture_details;
-
-    DatabaseReference databaseGestureDetails;
-    private FirebaseAuth mAuth;
-
-    List<GestureDetails> gestureDetailsList;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_profile_layout);
+        setContentView(R.layout.activity_view_profile);
+        SingleTap = (Button)findViewById(R.id.Butt1);
+        DoubleTap = (Button)findViewById(R.id.Butt2);
+        LongPress = (Button)findViewById(R.id.Butt3);
+        HorizontalSwipe = (Button)findViewById(R.id.Butt4);
+        VerticalSwipe = (Button)findViewById(R.id.Butt5);
+        Scroll = (Button)findViewById(R.id.Butt6);
 
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-
-        gestureDetailsList = new ArrayList<>();
-
-        tv_profile_welcome = findViewById(R.id.tv_profile_welcome);
-        tv_profile_id = findViewById(R.id.tv_profile_id);
-        lv_gesture_details = findViewById(R.id.lv_gesture_details);
-
-        databaseGestureDetails = FirebaseDatabase.getInstance().getReferenceFromUrl("https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/");
-
-        tv_profile_welcome.setText("Welcome, " + user.getDisplayName());
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        databaseGestureDetails.addValueEventListener(new ValueEventListener() {
-
+        SingleTap.setOnClickListener(new View.OnClickListener(){
             @Override
+<<<<<<< HEAD
             public void onDataChange(DataSnapshot dataSnapshot) {
                 gestureDetailsList.clear();
                 mAuth = FirebaseAuth.getInstance();
@@ -87,12 +54,42 @@ public class ViewProfile extends AppCompatActivity{
                 }
                 GestureList adapter = new GestureList(ViewProfile.this, gestureDetailsList);
                 lv_gesture_details.setAdapter(adapter);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
+=======
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(), SingleTapProfile.class));
+>>>>>>> 680c26d0f46790dcc2e6d0dbc9bd3a82734df556
             }
         });
+        DoubleTap.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(), DoubleTapProfile.class));
+            }
+        });
+        LongPress.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(), LongPressProfile.class));
+            }
+        });
+        HorizontalSwipe.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(), HorizontalSwipeProfile.class));
+            }
+        });
+        VerticalSwipe.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(), VerticalSwipeProfile.class));
+            }
+        });
+        Scroll.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(), ScrollProfile.class));
+            }
+        });
+
     }
 }

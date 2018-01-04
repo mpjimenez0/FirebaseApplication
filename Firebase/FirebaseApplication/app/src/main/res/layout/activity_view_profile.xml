@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/Text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Profile View"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/Butt1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Single Tap" />
+    <Button
+        android:id="@+id/Butt2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Double Tap"/>
+    <Button
+        android:id="@+id/Butt3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Long Press"/>
+    <Button
+        android:id="@+id/Butt4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Horizontal Swipe"/>
+    <Button
+        android:id="@+id/Butt5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vertical Swipe"/>
+    <Button
+        android:id="@+id/Butt6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Scroll"/>
+
+</LinearLayout>

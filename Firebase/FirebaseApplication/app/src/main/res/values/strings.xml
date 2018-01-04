@@ -2,7 +2,7 @@
     <string name="app_name">FirebaseApplication</string>
 
     // Values for the Register Spinner
-    <array name = "city">
+    <array name="city">
         <item>Caloocan</item>
         <item>Las Pinas</item>
         <item>Makati</item>
@@ -21,7 +21,7 @@
         <item>Valenzuela</item>
     </array>
 
-    <array name = "gender">
+    <array name="gender">
         <item>Male</item>
         <item>Female</item>
     </array>
