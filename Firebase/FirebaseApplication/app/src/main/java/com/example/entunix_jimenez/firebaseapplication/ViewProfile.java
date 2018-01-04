@@ -64,7 +64,7 @@ public class ViewProfile extends AppCompatActivity{
                 for(DataSnapshot gestureSnapshot: dataSnapshot.getChildren()){
                     String x = gestureSnapshot.getKey();
                     System.out.println(x);
-                    databaseGestureDetails = FirebaseDatabase.getInstance().getReferenceFromUrl("https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/" + x + "/Tap");
+                    databaseGestureDetails = FirebaseDatabase.getInstance().getReferenceFromUrl("https://fir-application-8e6b4.firebaseio.com/Gestures/" + user.getUid() + "/" + x + "/Scroll");
                     databaseGestureDetails.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
