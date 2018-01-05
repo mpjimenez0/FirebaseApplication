@@ -25,8 +25,9 @@ public class MainMenu extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu_layout);
 
-        Intent intent = getIntent();
-        String reg_email = intent.getStringExtra("reg_email");
+        //Intent intent = getIntent();
+        //String reg_email = intent.getStringExtra("reg_email");
+        //String et_reg_email = intent.getStringExtra("et_reg_email");
 
         bt_gestureStart = findViewById(R.id.bt_gestureStart);
         bt_profileView = findViewById(R.id.bt_profileView);
@@ -37,8 +38,8 @@ public class MainMenu extends AppCompatActivity{
         FirebaseUser user = mAuth.getCurrentUser();
 
         if(user != null) {
-            tv_greeting.setText("Welcome, " + reg_email);
-        }else if(user == null){
+            tv_greeting.setText("Welcome, " + user.getEmail());
+        }else if(user != null){
             finish();
             startActivity(new Intent(getApplicationContext(), Authentication.class));
             Toast.makeText(MainMenu.this, "Sign in Failed",

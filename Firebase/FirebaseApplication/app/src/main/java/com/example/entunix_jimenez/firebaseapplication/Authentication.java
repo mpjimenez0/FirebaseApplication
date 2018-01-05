@@ -61,7 +61,7 @@ public class Authentication extends AppCompatActivity {
     }
 
 
-    private void callsignin(final String email, String password){
+        private void callsignin(final String email, String password){
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -77,7 +77,7 @@ public class Authentication extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                         }else{
                             Intent i = new Intent(Authentication.this, MainMenu.class);
-                            i.putExtra("reg_email", email);
+                            //i.putExtra("reg_email", email);
                             startActivity(i);
                         }
                     }

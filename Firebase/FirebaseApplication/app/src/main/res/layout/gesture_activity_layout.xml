@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
@@ -26,19 +26,16 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textAlignment="center"
-        android:textSize="20sp" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/tv_gestDetails"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="263dp"
         android:text="TextView"
         android:textAlignment="viewStart"
-        android:textSize="18sp" />
+        android:textSize="12sp"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/bt_submitData"

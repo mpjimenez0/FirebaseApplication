@@ -190,10 +190,34 @@ public class Register extends AppCompatActivity {
                 } else {
                     userProfile();
                     Toast.makeText(Register.this, "Created Account", Toast.LENGTH_SHORT).show();
+                    //callsignin(email, password);
                     Log.d("TESTING", "User profile updated.");
                 }
             }
         });
+    }
+
+    private void callsignin(final String email, String password){
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d("TESTING", "signInWithEmail:onComplete:" + task.isSuccessful());
+
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        if (!task.isSuccessful()) {
+                            Log.w("TESTING", "signInWithEmail:failed", task.getException());
+                            Toast.makeText(Register.this, "Sign in Failed",
+                                    Toast.LENGTH_SHORT).show();
+                        }else{
+                            Intent i = new Intent(Register.this, MainMenu.class);
+                            //i.putExtra("reg_email", email);
+                            startActivity(i);
+                        }
+                    }
+                });
     }
 
     private void userProfile() {

@@ -111,7 +111,7 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
         }
 
         if(user != null){
-            tv_gestGreeting.setText("Welcome, " + user.getDisplayName() + "\n User Id: " + user.getUid());
+            tv_gestGreeting.setText("Welcome, " + user.getEmail() + "\n User Id: " + user.getUid());
             //myName = user.getDisplayName().toString();
         }
 
@@ -330,29 +330,28 @@ public class SendData extends AppCompatActivity implements GestureDetector.OnGes
         //SCROLL
         scrollFunc(scrollDistance, touchDuration);
 
-        tv_gestDetails.setText(
-                "\n\nON TOUCHEVENT"
-                        + "\nSINGLE TAP: " + singleTap
-                        + "\nDOUBLE TAP: " + doubleTap
-                        + "\nLONG PRESS: " + longPress
-                        + "\nSCROLL: " + scroll
-                        + "\nHORIZONTAL SWIPE: " + swipeX
-                        + "\nVERTICAL SWIPE: " + swipeY
-                        + "\nCount: " + tapCount
-                        + "\nCurrent X: " + x
-                        + "\nCurrent Y: " + y
-                        + "\nDown X: " + sX
-                        + "\nDownY: " + sY
-                        + "\nUp X: " + fX
-                        + "\nUp Y: " + fY
-                        + "\nDown Time: " + event.getDownTime() + "ms"
-                        + "\nEvent Time: " + event.getEventTime() + "ms"
-                        + "\nupTime: " + upTime + "ms"
-                        + "\nEvent Duration: " + totalTime + "ms"
-                        + "\ngetPointerCount: " + event.getPointerCount()
-                        + "\nDevice Name: " + deviceName
-                        + "\nDevice Manufacturer: " + deviceMan
-        );
+        //tv_gestDetails.setText(
+        //        "\nSINGLE TAP: " + singleTap
+        //                + "\nDOUBLE TAP: " + doubleTap
+        //                + "\nLONG PRESS: " + longPress
+        //                + "\nSCROLL: " + scroll
+        //                + "\nHORIZONTAL SWIPE: " + swipeX
+        //                + "\nVERTICAL SWIPE: " + swipeY
+        //                + "\nCount: " + tapCount
+        //                + "\nCurrent X: " + x
+        //                + "\nCurrent Y: " + y
+        //                + "\nDown X: " + sX
+        //                + "\nDownY: " + sY
+        //                + "\nUp X: " + fX
+        //                + "\nUp Y: " + fY
+        //                + "\nDown Time: " + event.getDownTime() + "ms"
+        //                + "\nEvent Time: " + event.getEventTime() + "ms"
+        //                + "\nupTime: " + upTime + "ms"
+        //                + "\nEvent Duration: " + totalTime + "ms"
+        //                + "\ngetPointerCount: " + event.getPointerCount()
+        //                + "\nDevice Name: " + deviceName
+        //                + "\nDevice Manufacturer: " + deviceMan
+        //);
         return super.onTouchEvent(event);
     }
 
